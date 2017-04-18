@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BCF1BAA0-14DD-4DB1-90D6-C6B622D84CEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C8254CD4-146D-4716-A072-668F67023F46}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{517FF221-67BF-4FE4-ACD6-D38616BA14CC}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CityPoiAPI", "src\CityPoiAPI\CityPoiAPI.xproj", "{E62A9B7C-DE75-4C1D-8317-E1D98125054E}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Tests", "Tests\Tests.xproj", "{BBCEBCA2-91F6-456E-8C3F-A360B690E2F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E62A9B7C-DE75-4C1D-8317-E1D98125054E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E62A9B7C-DE75-4C1D-8317-E1D98125054E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E62A9B7C-DE75-4C1D-8317-E1D98125054E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E62A9B7C-DE75-4C1D-8317-E1D98125054E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBCEBCA2-91F6-456E-8C3F-A360B690E2F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBCEBCA2-91F6-456E-8C3F-A360B690E2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBCEBCA2-91F6-456E-8C3F-A360B690E2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBCEBCA2-91F6-456E-8C3F-A360B690E2F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E62A9B7C-DE75-4C1D-8317-E1D98125054E} = {BCF1BAA0-14DD-4DB1-90D6-C6B622D84CEC}
+		{BBCEBCA2-91F6-456E-8C3F-A360B690E2F1} = {517FF221-67BF-4FE4-ACD6-D38616BA14CC}
+	EndGlobalSection
+EndGlobal

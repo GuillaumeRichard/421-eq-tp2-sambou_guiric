@@ -1,0 +1,593 @@
+{
+	"variables": [],
+	"info": {
+		"name": "CityPOI",
+		"_postman_id": "6e22e50a-4930-17a4-a316-5d77eb4e56cb",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Error",
+			"description": "",
+			"item": [
+				{
+					"name": "PostPOI Error 400",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities/{{cityId}}/pointsofinterest",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Name\": \"Joe Louis Arena\",\n    \"Description\": \"Detroit Red Wings Home\",\n    \"Address\": \"1515, av. Smith\",\n    \"Longitude\": \"10.1010\",\n    \"Latitude\": \"10.1010\",\n    \"CityId\": \"bad input\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PutPOI Error400",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities/{{cityId}}/pointsofinterest/{{pointsOfInterestId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\": \"salut\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PutPOI Error 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"] = responseCode.code === 404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities/{{cityId}}/pointsofinterest/{{badId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Id\": \"{{badId}}\",\n    \"Name\": \"Flint Michigan\",\n    \"Description\": \"The best city in the world\",\n    \"Address\": \"1515 av. John\",\n    \"Longitude\": \"10.1010\",\n    \"Latitude\": \"10.1010\",\n    \"CityId\": \"{{cityId}}\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePOI Error 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"] = responseCode.code === 404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities/{cityId}/pointsofinterest/{badId}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetCityWithPOI Error 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"] = responseCode.code === 404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities/{{badId}}?includePointsOfInterest=true",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetPOIs Error 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"] = responseCode.code === 404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities/{{badId}}/pointsofinterest",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetPOI Error 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"] = responseCode.code === 404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities/{{cityId}}/pointsofinterest/{{badId}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Success",
+			"description": "",
+			"item": [
+				{
+					"name": "Successful GetAllCities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var schema = ",
+									"{",
+									"    items:{",
+									"        properties: {",
+									"            \"cityId\": {",
+									"                type: \"number\"",
+									"            },",
+									"            \"name\": {",
+									"    \t        type: \"string\"",
+									"            },",
+									"            \"country\": {",
+									"    \t\t    type: \"string\"",
+									"            },",
+									"            \"population\": {",
+									"    \t        type: \"number\"",
+									"            }",
+									"        },",
+									"        \"Country\": {",
+									"\t\t    type: \"string\"",
+									"        },",
+									"        \"Population\": {",
+									"\t        type: \"string\"",
+									"        }",
+									"    }",
+									"        ",
+									"    },",
+									"",
+									"};",
+									"",
+									"data = JSON.parse(responseBody);",
+									"tests[\"Valid schema\"] = tv4.validate(data, schema);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Successful Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"var schema = ",
+									"{",
+									"    properties: {",
+									"        \"id\": {",
+									"\t        type: \"number\"",
+									"        },",
+									"        \"name\": {",
+									"\t\t    type: \"string\"",
+									"        },",
+									"        \"description\": {",
+									"\t        type: \"string\"",
+									"        },",
+									"        \"address\": {",
+									"            type: \"string\"",
+									"        },",
+									"        \"longitude\": {",
+									"            type: \"string\"",
+									"        },",
+									"        \"Longitude\": {",
+									"            type: \"string\"",
+									"        },",
+									"        \"Latitude\": {",
+									"            type: \"string\"",
+									"        },",
+									"        \"CityId\": {",
+									"            type: \"string\"",
+									"        },",
+									"        \"cityId\": {",
+									"            type: \"number\"",
+									"        }",
+									"    },",
+									"    required:[\"Id\",\"Name\",\"Description\",\"Address\",\"Longitude\",\"Latitude\",\"CityId\"]",
+									"};",
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Valid schema\"] = tv4.validate(data, schema);",
+									"",
+									"tests[\"Location is present\"] = responseHeaders.hasOwnProperty(\"Location\");",
+									"",
+									"var pointsOfInterestId = data.id;",
+									"postman.setEnvironmentVariable(\"pointsOfInterestId\", pointsOfInterestId);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities/{{cityId}}/pointsofinterest",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Name\": \"Joe Louis Arena\",\n    \"Description\": \"Detroit Red Wings Home\",\n    \"Address\": \"1515, av. Smith\",\n    \"Longitude\": \"10.1010\",\n    \"Latitude\": \"10.1010\",\n    \"CityId\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Successful GetCityNoPoi",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var schema = ",
+									"{",
+									"   properties: {",
+									"        \"cityId\": {",
+									"            type: \"number\"",
+									"        },",
+									"        \"name\": {",
+									"            type: \"string\"",
+									"        },",
+									"        \"country\": {",
+									"    \t    type: \"string\"",
+									"        },",
+									"        \"population\": {",
+									"            type: \"number\"",
+									"        }",
+									"    },",
+									"    required:[\"cityId\",\"name\",\"country\",\"population\"]",
+									"};",
+									"",
+									"data = JSON.parse(responseBody);",
+									"tests[\"Valid schema\"] = tv4.validate(data, schema);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/CityPoi/1?includePointsOfInterest=false",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Successful GetCityWithPOI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var schema = ",
+									"{",
+									"    properties: {",
+									"        \"cityId\": {",
+									"            type: \"number\"",
+									"        },",
+									"        \"name\": {",
+									"            type: \"string\"",
+									"        },",
+									"        \"country\": {",
+									"    \t    type: \"string\"",
+									"        },",
+									"        \"population\": {",
+									"            type: \"number\"",
+									"        }",
+									"    },",
+									"    required:[\"cityId\",\"name\",\"country\",\"population\"]",
+									"};",
+									"",
+									"data = JSON.parse(responseBody);",
+									"tests[\"Valid schema\"] = tv4.validate(data, schema);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities/{{cityId}}?includePointsOfInterest=true",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Successful GetPOIs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var schema = ",
+									"{",
+									"    items: {",
+									"        properties: {",
+									"            \"id\": {",
+									"    \t        type: \"number\"",
+									"            },",
+									"            \"name\": {",
+									"    \t\t    type: \"string\"",
+									"            },",
+									"            \"description\": {",
+									"    \t        type: \"string\"",
+									"            },",
+									"            \"address\": {",
+									"                type: \"string\"",
+									"            },",
+									"            \"longitude\": {",
+									"                type: \"string\"",
+									"            },",
+									"            \"latitude\": {",
+									"                type: \"string\"",
+									"            },",
+									"            \"cityId\": {",
+									"                type: \"number\"",
+									"            }",
+									"        },",
+									"        required:[\"id\",\"name\",\"description\",\"address\",\"longitude\",\"latitude\",\"cityId\"]",
+									"    }",
+									"};",
+									"",
+									"data = JSON.parse(responseBody);",
+									"tests[\"Valid schema\"] = tv4.validate(data, schema);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities/{{cityId}}/pointsofinterest",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Successful GetPOI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var schema = ",
+									"{",
+									"    properties: {",
+									"        \"id\": {",
+									"\t        type: \"number\"",
+									"        },",
+									"        \"name\": {",
+									"\t\t    type: \"string\"",
+									"        },",
+									"        \"description\": {",
+									"\t        type: \"string\"",
+									"        },",
+									"        \"address\": {",
+									"            type: \"string\"",
+									"        },",
+									"        \"longitude\": {",
+									"            type: \"string\"",
+									"        },",
+									"        \"latitude\": {",
+									"            type: \"string\"",
+									"        },",
+									"        \"cityId\": {",
+									"            type: \"number\"",
+									"        }",
+									"    },",
+									"    required:[\"id\",\"name\",\"description\",\"address\",\"longitude\",\"latitude\",\"cityId\"]",
+									"};",
+									"",
+									"data = JSON.parse(responseBody);",
+									"tests[\"Valid schema\"] = tv4.validate(data, schema);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities/{{cityId}}/pointsofinterest/{{pointsOfInterestId}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Successful PutPOI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities/{{cityId}}/pointsofinterest/{{pointsOfInterestId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Id\": \"{{pointsOfInterestId}}\",\n    \"Name\": \"Flint Michigan\",\n    \"Description\": \"The best city in the world\",\n    \"Address\": \"1515 av. John\",\n    \"Longitude\": \"10.1010\",\n    \"Latitude\": \"10.1010\",\n    \"CityId\": \"{{cityId}}\"\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Successful DeletePOI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/cities/{{cityId}}/pointsofinterest/{{pointsOfInterestId}}",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

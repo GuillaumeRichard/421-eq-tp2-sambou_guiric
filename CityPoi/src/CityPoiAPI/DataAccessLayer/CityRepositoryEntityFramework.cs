@@ -1,0 +1,93 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using CityPoiAPI.Entities;
+using CityPoiAPI.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+namespace CityPoiAPI.DataAccessLayer
+{
+    public class CityRepositoryEntityFramework : ICityRepository
+    {
+        private readonly ApiDbContext _context;
+
+        public CityRepositoryEntityFramework(ApiDbContext dbContext)
+        {
+            _context = dbContext;
+        }
+
+        public bool CityExists(int cityId)
+        {
+            var cities = _context.Cities.ToList();
+            foreach(var element in cities)
+            {
+                if(element.Id == cityId)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public IEnumerable<City> GetCities()
+        {
+            return _context.Cities.ToList();
+        }
+
+        public City GetCity(int cityId, bool includePointsOfInterest)
+        {
+            return _context.Cities.Include(c => c.PointsOfInterest).FirstOrDefault(x => x.Id == cityId);
+        }
+
+        public IEnumerable<PointOfInterest> GetPointsOfInterestForCity(int cityId)
+        {
+            var city = _context.Cities.Include(c => c.PointsOfInterest).FirstOrDefault(x => x.Id == cityId);
+            return city.PointsOfInterest.ToList();
+        }
+
+        public PointOfInterest GetPointOfInterestForCity(int cityId, int pointOfInterestId)
+        {
+            var city = _context.Cities.Include(c => c.PointsOfInterest).FirstOrDefault(x => x.Id == cityId);
+            foreach (var element in city.PointsOfInterest)
+            {
+                if (element.Id == pointOfInterestId)
+                {
+                    return element;
+                }
+            }
+            return null;
+        }
+
+        public void AddPointOfInterestForCity(int cityId, PointOfInterest pointOfInterest)
+        {
+            _context.Cities.Include(c => c.PointsOfInterest).FirstOrDefault(x => x.Id == cityId).PointsOfInterest.Add(pointOfInterest);
+            _context.SaveChanges();
+        }
+
+        public void DeletePointOfInterest(PointOfInterest pointOfInterest)
+        {
+            _context.Cities.Include(c => c.PointsOfInterest).FirstOrDefault(x => x.Id == pointOfInterest.CityId).PointsOfInterest.Remove(pointOfInterest);
+            _context.SaveChanges();
+        }
+
+        public void UpdatePointOfInterest(PointOfInterest newPointOfInterest)
+        {
+            var originalPoi = GetPointOfInterestForCity(newPointOfInterest.CityId, newPointOfInterest.Id);
+            originalPoi = MapPoi(newPointOfInterest, originalPoi);
+            _context.PointsOfInterest.Update(originalPoi);
+            _context.SaveChanges();
+        }
+
+        private PointOfInterest MapPoi(PointOfInterest newPointOfInterest, PointOfInterest originalPoi)
+        {
+            originalPoi.Address = newPointOfInterest.Address;
+            originalPoi.Description = newPointOfInterest.Description;
+            originalPoi.Latitude = newPointOfInterest.Latitude;
+            originalPoi.Longitude = newPointOfInterest.Longitude;
+            originalPoi.Name = newPointOfInterest.Name;
+            return originalPoi;
+        }
+    }
+}

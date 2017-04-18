@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "xunit": "2.2.0-beta2-build3300",
+    "dotnet-test-xunit": "2.2.0-preview2-build1029",
+    "Bogus": "8.0.3",
+    "NSubstitute": "2.0.1-rc",
+    "FluentAssertions": "4.18.0",
+    "CityPoiAPI": "1.0.0-*",
+    "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.0.1",
+    "AutoMapper": "5.2.0"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.1"
+        }
+      }
+    }
+  },
+  "testRunner": "xunit",
+  "version": "1.0.0-*"
+}
