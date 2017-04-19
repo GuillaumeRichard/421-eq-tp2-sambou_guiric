@@ -1,5 +1,8 @@
-<h1>
-  {{title}}
-</h1>
+<h1>Event Arguments</h1>
+Implementation of https://developers.google.com/maps/documentation/javascript/examples/event-arguments
+<br/><br/>
+Click the map to add marker and center it.
+<ngui-map zoom="4" center="-25.363882, 131.044922" (click)="onClick($event)">
+  <marker *ngFor="let pos of positions" [position]="pos"></marker>
+</ngui-map>
 
-<ngui-map center="St-Élie-de-Caxton, Canada"></ngui-map>
