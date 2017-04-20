@@ -6,12 +6,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   positions = [];
+  selectedPos: Position;
 
   onClick(event) {
-      if (event instanceof MouseEvent)
+      //Je comprends pas
+    if (event instanceof MouseEvent)
+      {
         return;
+      }
       this.positions.push(event.latLng);
       event.target.panTo(event.latLng);
+  }
+
+  onSelect(pos) {
+    this.selectedPos = pos;
   }
 
 }
