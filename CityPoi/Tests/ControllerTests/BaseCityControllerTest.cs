@@ -10,6 +10,7 @@ namespace Tests
 
         protected ICityRepository _fakeCityRepository;
         protected CityPoiController _cityPoiController;
+        protected PoiController _poiController;
         protected CityPoiItemBuilder _cityPoiItemBuilder;
         protected DTOMapper _DTOMapper;
 

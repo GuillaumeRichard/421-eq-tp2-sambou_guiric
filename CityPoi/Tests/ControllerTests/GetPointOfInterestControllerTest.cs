@@ -35,7 +35,7 @@ namespace Tests.ControllerTests
             _fakeCityRepository.CityExists(city.Id).Returns(true);
 
 
-            var result = _cityPoiController.GetPointOfInterest(city.Id, poi.Id);
+            var result = _poiController.GetPointOfInterest(city.Id, poi.Id);
 
 
             result.Should().BeOfType<ObjectResult>().Which.Value.ShouldBeEquivalentTo(POIDTO);
@@ -48,7 +48,7 @@ namespace Tests.ControllerTests
             _fakeCityRepository.CityExists(city.Id).Returns(true);
 
 
-            var result = _cityPoiController.GetPointOfInterest(city.Id, Bad_Id);
+            var result = _poiController.GetPointOfInterest(city.Id, Bad_Id);
 
 
             result.Should().BeOfType<NotFoundResult>();
@@ -62,7 +62,7 @@ namespace Tests.ControllerTests
             _fakeCityRepository.CityExists(city.Id).Returns(false);
 
 
-            var result = _cityPoiController.GetPointOfInterest(city.Id, poi.Id);
+            var result = _poiController.GetPointOfInterest(city.Id, poi.Id);
 
 
             result.Should().BeOfType<NotFoundResult>();

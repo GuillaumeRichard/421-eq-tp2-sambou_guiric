@@ -21,7 +21,7 @@ namespace Tests.ControllerTests
         [Fact]
         public void UpdatePointOfInterest_PoiIsNull_ReturnBadRequest()
         {
-            var result = _cityPoiController.UpdatePointOfInterest(_Good_Id, null);
+            var result = _poiController.UpdatePointOfInterest(_Good_Id, null);
 
 
             result.Should().BeOfType<BadRequestResult>();
@@ -34,7 +34,7 @@ namespace Tests.ControllerTests
             var poiDTO = _DTOMapper.PoiToPoiDto(poi);
 
 
-            var result = _cityPoiController.UpdatePointOfInterest(_Not_Matching_Id, poiDTO);
+            var result = _poiController.UpdatePointOfInterest(_Not_Matching_Id, poiDTO);
 
 
             result.Should().BeOfType<BadRequestResult>();
@@ -51,7 +51,7 @@ namespace Tests.ControllerTests
             _fakeCityRepository.GetCity(city.Id, _IncludePointsOfInterest).Returns(city);
 
 
-            var result = _cityPoiController.UpdatePointOfInterest(_Bad_Id, poiDTO);
+            var result = _poiController.UpdatePointOfInterest(_Bad_Id, poiDTO);
 
 
             result.Should().BeOfType<NotFoundResult>();
@@ -67,7 +67,7 @@ namespace Tests.ControllerTests
             var poiDTO = _DTOMapper.PoiToPoiDto(poi);
             _fakeCityRepository.GetCity(city.Id, _IncludePointsOfInterest).Returns(city);
 
-            var result = _cityPoiController.UpdatePointOfInterest(poi.Id, poiDTO);
+            var result = _poiController.UpdatePointOfInterest(poi.Id, poiDTO);
 
             result.Should().BeOfType<NoContentResult>();
         }
@@ -78,10 +78,10 @@ namespace Tests.ControllerTests
             //Arrange
             var poi = _cityPoiItemBuilder.GeneratePointOfInterest();
             var poiDTO = _DTOMapper.PoiToPoiDto(poi);
-            _cityPoiController.ModelState.AddModelError("Error", "Model state error");
+            _poiController.ModelState.AddModelError("Error", "Model state error");
 
             //Action
-            var result = _cityPoiController.UpdatePointOfInterest(poi.Id, poiDTO);
+            var result = _poiController.UpdatePointOfInterest(poi.Id, poiDTO);
 
             //Assert 
             result.Should().BeOfType<BadRequestObjectResult>();

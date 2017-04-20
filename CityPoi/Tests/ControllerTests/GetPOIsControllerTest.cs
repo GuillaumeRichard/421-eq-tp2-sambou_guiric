@@ -24,7 +24,7 @@ namespace Tests.ControllerTests
             };
 
             //Action
-            var result = _cityPoiController.GetPointsOfInterestForCity(city.Id);
+            var result = _poiController.GetPointsOfInterestForCity(city.Id);
 
 
             // Assert
@@ -38,7 +38,7 @@ namespace Tests.ControllerTests
             var badId = -99999999;
 
             //Action
-            var result = _cityPoiController.GetPointsOfInterestForCity(badId);
+            var result = _poiController.GetPointsOfInterestForCity(badId);
 
             // Assert
             result.Should().BeOfType<NotFoundResult>();

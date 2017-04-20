@@ -179,6 +179,7 @@
 "C:\Users\Samuel\Documents\GitHub\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Program.cs"
 "C:\Users\Samuel\Documents\GitHub\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Startup.cs"
 "C:\Users\Samuel\Documents\GitHub\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Controllers\CityPoiController.cs"
+"C:\Users\Samuel\Documents\GitHub\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Controllers\PoiController.cs"
 "C:\Users\Samuel\Documents\GitHub\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\DataAccessLayer\ApiDbContext.cs"
 "C:\Users\Samuel\Documents\GitHub\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\DataAccessLayer\ApiDbContextExtension.cs"
 "C:\Users\Samuel\Documents\GitHub\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\DataAccessLayer\CityRepositoryEntityFramework.cs"

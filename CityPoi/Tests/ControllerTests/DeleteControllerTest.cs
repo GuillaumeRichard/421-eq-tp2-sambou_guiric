@@ -23,7 +23,7 @@ namespace Tests.ControllerTests
 
 
             //Action
-            _cityPoiController.DeletePointOfIntetest(city.Id, city.PointsOfInterest.First().Id);
+            _poiController.DeletePointOfIntetest(city.Id, city.PointsOfInterest.First().Id);
 
 
             // Assert
@@ -37,7 +37,7 @@ namespace Tests.ControllerTests
             var city = _cityPoiItemBuilder.GenerateCity();
 
             //Action
-            var result = _cityPoiController.DeletePointOfIntetest(city.Id, city.PointsOfInterest.First().Id);
+            var result = _poiController.DeletePointOfIntetest(city.Id, city.PointsOfInterest.First().Id);
 
             // Assert
             result.Should().BeOfType<NotFoundResult>();
@@ -52,7 +52,7 @@ namespace Tests.ControllerTests
             _fakeCityRepository.GetCity(city.Id, true).Returns(city);
 
             //Action
-            var result = _cityPoiController.DeletePointOfIntetest(city.Id, badId);
+            var result = _poiController.DeletePointOfIntetest(city.Id, badId);
 
             // Assert
             result.Should().BeOfType<NotFoundResult>();
@@ -68,7 +68,7 @@ namespace Tests.ControllerTests
 
 
             //Action
-            var result = _cityPoiController.DeletePointOfIntetest(city.Id, city.PointsOfInterest.First().Id);
+            var result = _poiController.DeletePointOfIntetest(city.Id, city.PointsOfInterest.First().Id);
 
 
             // Assert
