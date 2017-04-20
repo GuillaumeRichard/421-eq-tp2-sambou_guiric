@@ -10,12 +10,12 @@ namespace Tests.ControllerTests
     {
 
         [Fact]
-        public void GetCities_CititesExist_ReturnCityList() //YM: ReturnCityList --> ReturnCityDtos
+        public void GetCities_CititesExist_ReturnCityDtos()
         {
             //Arrange
-            var listLength = 10; //YM: valeur qui n'a pas à être modifiée --> mettre en constante 
+            const int listLength = 10;
             var cities = _cityPoiItemBuilder.GenerateCityList(listLength);
-            var DTOList = cities.Select(city => new CityWithNoPOIDTO  //YM: Dans tous les tests, utiliser un mapper pour améliorer la lisibilité
+            var dtoList = cities.Select(city => new CityWithNoPOIDTO  //YM: Dans tous les tests, utiliser un mapper pour améliorer la lisibilité
             {
                 CityId = city.Id,
                 Name = city.Name,
@@ -30,7 +30,7 @@ namespace Tests.ControllerTests
 
 
             // Assert
-            result.ShouldBeEquivalentTo(DTOList);
+            result.ShouldBeEquivalentTo(dtoList);
         }
     }
 }
