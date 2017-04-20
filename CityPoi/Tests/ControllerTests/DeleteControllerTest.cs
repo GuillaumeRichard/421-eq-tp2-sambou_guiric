@@ -10,10 +10,11 @@ namespace Tests.ControllerTests
 {
     public class DeleteControllerTest : BaseCityControllerTest
     {
-        private int badId = 0;
+        private int badId = 0; //YM: Déplacer dans la méthode où c'est utilisé + créer un constante 
+
 
         [Fact]
-        public void Delete_CityAndPoiIsInRepository_DeletePoiInRepository()
+        public void Delete_CityAndPoiIsInRepository_DeletePoiInRepository() //YTM: DeletePoiInRepository --> CallDeletePoiInRepository
         {
             //Arrange
             var city = _cityPoiItemBuilder.GenerateCity();

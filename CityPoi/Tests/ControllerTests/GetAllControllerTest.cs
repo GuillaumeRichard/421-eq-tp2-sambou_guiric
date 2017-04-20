@@ -1,23 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using CityPoiAPI.DTO;
-using CityPoiAPI.Entities;
+﻿using System.Linq;
 using FluentAssertions;
 using NSubstitute;
 using Xunit;
+using CityPoiAPI.DTO;
 
-namespace Tests.GetAllTest
+namespace Tests.ControllerTests
 {
     public class GetAllControllerTest : BaseCityControllerTest
     {
 
         [Fact]
-        public void GetCities_CititesExist_ReturnCityList()
+        public void GetCities_CititesExist_ReturnCityList() //YM: ReturnCityList --> ReturnCityDtos
         {
             //Arrange
-            var listLength = 10;
+            var listLength = 10; //YM: valeur qui n'a pas à être modifiée --> mettre en constante 
             var cities = _cityPoiItemBuilder.GenerateCityList(listLength);
-            var DTOList = cities.Select(city => new CityWithNoPOIDTO
+            var DTOList = cities.Select(city => new CityWithNoPOIDTO  //YM: Dans tous les tests, utiliser un mapper pour améliorer la lisibilité
             {
                 CityId = city.Id,
                 Name = city.Name,

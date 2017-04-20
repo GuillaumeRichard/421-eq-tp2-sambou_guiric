@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CityPoiAPI.Controllers
 {
+    //YM:créer deux controlleurs
     [Route("api/Cities")]
     public class CityPoiController : Controller
     {
@@ -24,7 +25,7 @@ namespace CityPoiAPI.Controllers
         public List<CityWithNoPOIDTO> GetAll()
         {
             var cityList = _repository.GetCities();
-            var DTOList = cityList.Select(city => new CityWithNoPOIDTO
+            var DTOList = cityList.Select(city => new CityWithNoPOIDTO  //YM:utiliser un mapper 
             {
                 CityId = city.Id,
                 Name = city.Name,
@@ -45,7 +46,7 @@ namespace CityPoiAPI.Controllers
 
             var city = _repository.GetCity(CityId, true);
 
-            foreach (var element in city.PointsOfInterest)
+            foreach (var element in city.PointsOfInterest)  //YM: Pourquoi un foreach ?? Appeler le delete du repo.
             {
                 if (element.Id == PoiId)
                 {
@@ -68,7 +69,7 @@ namespace CityPoiAPI.Controllers
 
             if (cityPOIs == null)
             {
-                return new NotFoundResult();
+                return new NotFoundResult();  //YM: non couvert par les tests 
             }
 
 
@@ -93,7 +94,7 @@ namespace CityPoiAPI.Controllers
                 return new NotFoundResult();
             }
 
-            return new ObjectResult(new PointOfInterestDTO
+            return new ObjectResult(new PointOfInterestDTO  //YM: utiliser un mapper 
             {
                 Id = poi.Id,
                 Name = poi.Name,
@@ -117,7 +118,7 @@ namespace CityPoiAPI.Controllers
 
             if (includePointsOfInterest)
             {
-                return new ObjectResult(new CityWithPOIDTO
+                return new ObjectResult(new CityWithPOIDTO  //YM: utiliser un mapper 
                 {
                     CityId = city.Id,
                     Name = city.Name,
@@ -128,7 +129,7 @@ namespace CityPoiAPI.Controllers
             }
             else
             {
-                return new ObjectResult(new CityWithNoPOIDTO
+                return new ObjectResult(new CityWithNoPOIDTO //YM: utiliser un mapper 
                 {
                     CityId = city.Id,
                     Name = city.Name,

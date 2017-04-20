@@ -36,12 +36,12 @@ namespace Tests.ControllerTests
         }
 
         [Fact]
-        public void AddPOI_BadItem_ReturnBadRequestWithError()
+        public void AddPOI_BadItem_ReturnBadRequestWithError() 
         {
             var city = _cityPoiItemBuilder.GenerateCity();
             _fakeCityRepository.CityExists(city.Id).Returns(true);
             var poi = _cityPoiItemBuilder.GeneratePostPOIDTO();
-            _cityPoiController.ModelState.AddModelError("Error", "Model state error");
+            _cityPoiController.ModelState.AddModelError("Error", "Model state error");  
 
             var result = _cityPoiController.AddPointOfInterestToCity(city.Id, poi);
 

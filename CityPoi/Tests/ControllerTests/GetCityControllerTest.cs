@@ -14,7 +14,7 @@ namespace Tests.ControllerTests
         public void GetCity_ItemExistAndPOIisRequested_ReturnCityWithPOIDTO()
         {
             var city = _cityPoiItemBuilder.GenerateCity();
-            var cityDTO = new CityWithPOIDTO
+            var cityDTO = new CityWithPOIDTO 
             {
                 CityId = city.Id,
                 Name = city.Name,

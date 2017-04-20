@@ -9,7 +9,6 @@ export class AppComponent {
   selectedPos: Position;
 
   onClick(event) {
-      //Je comprends pas
     if (event instanceof MouseEvent)
       {
         return;

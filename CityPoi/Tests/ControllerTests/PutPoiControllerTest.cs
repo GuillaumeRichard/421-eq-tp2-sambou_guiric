@@ -9,7 +9,7 @@ namespace Tests.ControllerTests
 {
     public class PutPoiControllerTest: BaseCityControllerTest
     {
-        private const int _Good_Id = 1;
+        private const int _Good_Id = 1; 
         private const int _Not_Matching_Id = 2;
         private const int _Bad_Id = -999;
         private const bool _IncludePointsOfInterest = true;
