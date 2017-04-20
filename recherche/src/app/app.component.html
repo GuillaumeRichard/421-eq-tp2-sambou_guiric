@@ -3,6 +3,8 @@ Implementation of https://developers.google.com/maps/documentation/javascript/ex
 <br/><br/>
 Click the map to add marker and center it.
 <ngui-map zoom="4" center="-25.363882, 131.044922" (click)="onClick($event)">
-  <marker *ngFor="let pos of positions" [position]="pos"></marker>
+  <custom-marker *ngFor="let pos of positions" [position]="pos">
+    <div class="custom-icon" (click)="onSelect(pos); $event.stopPropagation()" [class.selected]="pos === selectedPos">xd</div>
+  </custom-marker>
 </ngui-map>
 
