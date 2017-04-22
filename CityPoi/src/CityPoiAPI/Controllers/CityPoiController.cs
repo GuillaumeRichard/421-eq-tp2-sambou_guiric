@@ -9,20 +9,18 @@ namespace CityPoiAPI.Controllers
     [Route("api/Cities")]
     public class CityPoiController : Controller
     {
-        private ICityRepository _repository;
-        private DTOMapper _DTOMapper;
+        private readonly ICityRepository _repository;
 
         public CityPoiController(ICityRepository repository)
         {
             _repository = repository;
-            _DTOMapper = new DTOMapper();
         }
 
         [HttpGet]
         public List<CityWithNoPOIDTO> GetAll()
         {
             var cityList = _repository.GetCities();
-            var DTOList = cityList.Select(city => new CityWithNoPOIDTO  //YM:utiliser un mapper 
+            var dtoList = cityList.Select(city => new CityWithNoPOIDTO
             {
                 CityId = city.Id,
                 Name = city.Name,
@@ -30,13 +28,13 @@ namespace CityPoiAPI.Controllers
                 Population = city.Population
             }).ToList();
 
-            return DTOList;
+            return dtoList;
         }
 
         [HttpGet("{id}", Name = "GetCity")]
-        public IActionResult GetCity(int Id, bool includePointsOfInterest)
+        public IActionResult GetCity(int id, bool includePointsOfInterest)
         {
-            var city = _repository.GetCity(Id, includePointsOfInterest);
+            var city = _repository.GetCity(id, includePointsOfInterest);
 
             if (city == null)
             {
@@ -45,7 +43,7 @@ namespace CityPoiAPI.Controllers
 
             if (includePointsOfInterest)
             {
-                return new ObjectResult(new CityWithPOIDTO  //YM: utiliser un mapper 
+                return new ObjectResult(new CityWithPOIDTO
                 {
                     CityId = city.Id,
                     Name = city.Name,
@@ -56,7 +54,7 @@ namespace CityPoiAPI.Controllers
             }
             else
             {
-                return new ObjectResult(new CityWithNoPOIDTO //YM: utiliser un mapper 
+                return new ObjectResult(new CityWithNoPOIDTO
                 {
                     CityId = city.Id,
                     Name = city.Name,

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CityPoiAPI.Entities;
 using CityPoiAPI.Services;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CityPoiAPI.DataAccessLayer
@@ -20,15 +18,7 @@ namespace CityPoiAPI.DataAccessLayer
         public bool CityExists(int cityId)
         {
             var cities = _context.Cities.ToList();
-            foreach(var element in cities)   //YM: Éviter le foreach, utliser les expressions fléchées.
-            {
-                if(element.Id == cityId)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return cities.Any(element => element.Id == cityId);
         }
 
         public IEnumerable<City> GetCities()
@@ -50,14 +40,7 @@ namespace CityPoiAPI.DataAccessLayer
         public PointOfInterest GetPointOfInterestForCity(int cityId, int pointOfInterestId)
         {
             var city = _context.Cities.Include(c => c.PointsOfInterest).FirstOrDefault(x => x.Id == cityId);
-            foreach (var element in city.PointsOfInterest) //YM: Éviter le foreach, utliser les expression fléchée.
-            {
-                if (element.Id == pointOfInterestId)
-                {
-                    return element;
-                }
-            }
-            return null;
+            return city.PointsOfInterest.FirstOrDefault(element => element.Id == pointOfInterestId);
         }
 
         public void AddPointOfInterestForCity(int cityId, PointOfInterest pointOfInterest)

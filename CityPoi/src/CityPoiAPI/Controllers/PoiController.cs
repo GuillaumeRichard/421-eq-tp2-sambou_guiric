@@ -74,7 +74,7 @@ namespace CityPoiAPI.Controllers
                 return new NotFoundResult();
             }
 
-            return new ObjectResult(new PointOfInterestDTO  //YM: utiliser un mapper 
+            return new ObjectResult(new PointOfInterestDTO   
             {
                 Id = poi.Id,
                 Name = poi.Name,

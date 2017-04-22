@@ -14,7 +14,7 @@ namespace Tests.ControllerTests
         {
             //Arrange
             const int listLength = 10;
-            var cities = _cityPoiItemBuilder.GenerateCityList(listLength);
+            var cities = CityPoiItemBuilder.GenerateCityList(listLength);
             var dtoList = cities.Select(city => new CityWithNoPOIDTO  //YM: Dans tous les tests, utiliser un mapper pour améliorer la lisibilité
             {
                 CityId = city.Id,
@@ -22,11 +22,11 @@ namespace Tests.ControllerTests
                 Country = city.Country,
                 Population = city.Population
             }).ToList();
-            _fakeCityRepository.GetCities().Returns(cities);
+            FakeCityRepository.GetCities().Returns(cities);
 
 
             //Action
-            var result = _cityPoiController.GetAll();
+            var result = CityPoiController.GetAll();
 
 
             // Assert

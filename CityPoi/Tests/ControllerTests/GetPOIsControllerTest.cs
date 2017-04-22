@@ -1,5 +1,4 @@
-﻿using System;
-using CityPoiAPI.DTO;
+﻿using CityPoiAPI.DTO;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
@@ -7,28 +6,28 @@ using Xunit;
 
 namespace Tests.ControllerTests
 {
-    public class GetPOIsControllerTest : BaseCityControllerTest
+    public class GetPoIsControllerTest : BaseCityControllerTest
     {
 
         [Fact]
         public void GetPOIList_CityExist_ReturnPOIList()
         {
             //Arrange
-            var city = _cityPoiItemBuilder.GenerateCity();
-            _fakeCityRepository.GetPointsOfInterestForCity(city.Id).Returns(city.PointsOfInterest);
-            _fakeCityRepository.CityExists(city.Id).Returns(true);
+            var city = CityPoiItemBuilder.GenerateCity();
+            FakeCityRepository.GetPointsOfInterestForCity(city.Id).Returns(city.PointsOfInterest);
+            FakeCityRepository.CityExists(city.Id).Returns(true);
 
-            var POIDTO = new PointsOfInterestDTO
+            var poiDto = new PointsOfInterestDTO
             {
                 POIList = city.PointsOfInterest
             };
 
             //Action
-            var result = _poiController.GetPointsOfInterestForCity(city.Id);
+            var result = PoiController.GetPointsOfInterestForCity(city.Id);
 
 
             // Assert
-            result.Should().BeOfType<ObjectResult>().Which.Value.ShouldBeEquivalentTo(POIDTO);
+            result.Should().BeOfType<ObjectResult>().Which.Value.ShouldBeEquivalentTo(poiDto);
         }
 
         [Fact]
@@ -38,7 +37,7 @@ namespace Tests.ControllerTests
             var badId = -99999999;
 
             //Action
-            var result = _poiController.GetPointsOfInterestForCity(badId);
+            var result = PoiController.GetPointsOfInterestForCity(badId);
 
             // Assert
             result.Should().BeOfType<NotFoundResult>();

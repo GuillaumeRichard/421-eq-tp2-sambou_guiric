@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using FluentAssertions;
 using CityPoiAPI.Entities;
+using Tests.ControllerTests;
 using Xunit;
 
 namespace Tests
@@ -12,7 +13,7 @@ namespace Tests
         [Fact]
         public void ModelState_GoodItem_ReturnNoError()
         {
-            var city = _cityPoiItemBuilder.GenerateCity();
+            var city = CityPoiItemBuilder.GenerateCity();
 
             var modelStateValidity = ValidateCity(city);
 
@@ -22,7 +23,7 @@ namespace Tests
         [Fact]
         public void ModelState_CityWithoutName_ReturnAnError()
         {
-            var city = _cityPoiItemBuilder.GenerateCity();
+            var city = CityPoiItemBuilder.GenerateCity();
             city.Name = null;
 
             var modelStateValidity = ValidateCity(city);
@@ -33,7 +34,7 @@ namespace Tests
         [Fact]
         public void ModelState_CityWithoutCountry_ReturnAnError()
         {
-            var city = _cityPoiItemBuilder.GenerateCity();
+            var city = CityPoiItemBuilder.GenerateCity();
             city.Country = null;
 
             var modelStateValidity = ValidateCity(city);
