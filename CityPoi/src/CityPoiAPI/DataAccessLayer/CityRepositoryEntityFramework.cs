@@ -20,7 +20,15 @@ namespace CityPoiAPI.DataAccessLayer
         public bool CityExists(int cityId)
         {
             var cities = _context.Cities.ToList();
-            return cities.Any(element => element.Id == cityId);
+            foreach(var element in cities)   //YM: Éviter le foreach, utliser les expressions fléchées.
+            {
+                if(element.Id == cityId)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public IEnumerable<City> GetCities()
@@ -42,7 +50,14 @@ namespace CityPoiAPI.DataAccessLayer
         public PointOfInterest GetPointOfInterestForCity(int cityId, int pointOfInterestId)
         {
             var city = _context.Cities.Include(c => c.PointsOfInterest).FirstOrDefault(x => x.Id == cityId);
-            return city.PointsOfInterest.FirstOrDefault(element => element.Id == pointOfInterestId);
+            foreach (var element in city.PointsOfInterest) //YM: Éviter le foreach, utliser les expression fléchée.
+            {
+                if (element.Id == pointOfInterestId)
+                {
+                    return element;
+                }
+            }
+            return null;
         }
 
         public void AddPointOfInterestForCity(int cityId, PointOfInterest pointOfInterest)
@@ -60,6 +75,7 @@ namespace CityPoiAPI.DataAccessLayer
         public void UpdatePointOfInterest(PointOfInterest newPointOfInterest)
         {
             var originalPoi = GetPointOfInterestForCity(newPointOfInterest.CityId, newPointOfInterest.Id);
+            originalPoi = MapPoi(newPointOfInterest, originalPoi); // YM: non nécessaire 
             _context.PointsOfInterest.Update(originalPoi);
             _context.SaveChanges();
         }
