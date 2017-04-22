@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CityPoiAPI.Controllers
 {
-    [Route("api/Cities")]
+    [Route("api/Cities/{cityId}/pointsofinterest")]
     public class PoiController:Controller
     {
         private readonly ICityRepository _repository;
@@ -18,7 +18,7 @@ namespace CityPoiAPI.Controllers
             _dtoMapper = new DTOMapper();
         }
 
-        [HttpDelete("{cityId}/pointsofinterest/{poiId}", Name = "DeletePointOfInterest")]
+        [HttpDelete("{poiId}", Name = "DeletePointOfInterest")]
         public IActionResult DeletePointOfIntetest(int cityId, int poiId)
         {
             if (!_repository.CityExists(cityId))
@@ -37,7 +37,7 @@ namespace CityPoiAPI.Controllers
             return new NotFoundResult();
         }
 
-        [HttpGet("{id}/pointsofinterest", Name = "GetPointsOfInterestForCity")]
+        [HttpGet]
         public IActionResult GetPointsOfInterestForCity(int id)
         {
             if (!_repository.CityExists(id))
@@ -59,7 +59,7 @@ namespace CityPoiAPI.Controllers
             });
         }
 
-        [HttpGet("{cityId}/pointsofinterest/{poiId}", Name = "GetPointOfInterest")]
+        [HttpGet("{poiId}", Name = "GetPointOfInterest")]
         public IActionResult GetPointOfInterest(int cityId, int poiId)
         {
             if (!_repository.CityExists(cityId))
@@ -87,7 +87,6 @@ namespace CityPoiAPI.Controllers
         }
 
         [HttpPost]
-        [Route("{cityId}/pointsofInterest", Name = "AddPointOfInterest")]
         public IActionResult AddPointOfInterestToCity(int cityId, [FromBody] PostPOIDTO poiDto)
         {
             if (!_repository.CityExists(cityId))
@@ -109,7 +108,7 @@ namespace CityPoiAPI.Controllers
         }
 
         [HttpPut]
-        [Route("{cityId}/pointsofInterest/{poiId}", Name = "PutPointOfInterest")]
+        [Route("{poiId}", Name = "PutPointOfInterest")]
         public IActionResult UpdatePointOfInterest(int poiId, [FromBody] PointOfInterestDTO poiDto)
         {
             if (poiDto == null || poiDto.Id != poiId)
