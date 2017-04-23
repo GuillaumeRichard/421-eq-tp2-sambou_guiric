@@ -63,7 +63,7 @@ namespace CityPoiAPI.DataAccessLayer
             _context.SaveChanges();
         }
 
-        private PointOfInterest MapPoi(PointOfInterest newPointOfInterest, PointOfInterest originalPoi)
+        private static PointOfInterest MapPoi(PointOfInterest newPointOfInterest, PointOfInterest originalPoi)
         {
             originalPoi.Address = newPointOfInterest.Address;
             originalPoi.Description = newPointOfInterest.Description;

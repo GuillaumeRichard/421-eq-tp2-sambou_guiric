@@ -18,6 +18,7 @@ namespace Tests.ControllerTests
         {
             FakeCityRepository = Substitute.For<ICityRepository>();
             CityPoiController = new CityPoiController(FakeCityRepository);
+            PoiController = new PoiController(FakeCityRepository);
             CityPoiItemBuilder = new CityPoiItemBuilder();
             DtoMapper = new DTOMapper();
         }
