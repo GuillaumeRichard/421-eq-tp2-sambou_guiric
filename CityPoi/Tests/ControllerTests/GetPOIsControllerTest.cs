@@ -31,13 +31,28 @@ namespace Tests.ControllerTests
         }
 
         [Fact]
-        public void GetPoiId_NoPoiFound_ReturnObjectNotFound()
+        public void GetPoiList_CityNotFound_ReturnNotFound()
         {
             //Arrange
-            var badId = -99999999;
+            const int badId = -99999999;
 
             //Action
             var result = PoiController.GetPointsOfInterestForCity(badId);
+
+            // Assert
+            result.Should().BeOfType<NotFoundResult>();
+        }
+
+        [Fact]
+        public void GetPoiList_NoPoiFound_ReturnObjectNotFound()
+        {
+            //Arrange
+            var city = CityPoiItemBuilder.GenerateCity();
+            city.PointsOfInterest = null;
+            FakeCityRepository.GetPointsOfInterestForCity(city.Id).Returns(city.PointsOfInterest);
+
+            //Action
+            var result = PoiController.GetPointsOfInterestForCity(city.Id);
 
             // Assert
             result.Should().BeOfType<NotFoundResult>();
