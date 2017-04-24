@@ -2,6 +2,7 @@
 using CityPoiAPI.DTO;
 using CityPoiAPI.Services;
 using NSubstitute;
+using Tests.ItemBuilder;
 
 namespace Tests.ControllerTests
 {

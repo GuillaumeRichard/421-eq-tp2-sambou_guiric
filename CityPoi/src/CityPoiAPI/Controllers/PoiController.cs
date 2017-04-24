@@ -26,7 +26,6 @@ namespace CityPoiAPI.Controllers
                 return new NotFoundResult();
             }
 
-            var city = _repository.GetCity(cityId, true);
             var poi = _repository.GetPointOfInterestForCity(cityId, poiId);
 
             if (poi == null)
@@ -39,13 +38,6 @@ namespace CityPoiAPI.Controllers
             }
 
             return NoContent();
-            //foreach (var element in city.PointsOfInterest)  //YM: Pourquoi un foreach ?? Appeler le delete du repo.
-            //{
-            //    if (element.Id != poiId) continue;
-            //    _repository.DeletePointOfInterest(element);
-            //    return new NoContentResult();
-            //}
-            //return new NotFoundResult();
         }
 
         [HttpGet("{id}/pointsofinterest", Name = "GetPointsOfInterestForCity")]
@@ -60,7 +52,7 @@ namespace CityPoiAPI.Controllers
 
             if (cityPoIs == null)
             {
-                return new NotFoundResult();  //YM: non couvert par les tests 
+                return new NotFoundResult(); 
             }
 
 

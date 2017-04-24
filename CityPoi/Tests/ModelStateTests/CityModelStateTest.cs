@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using FluentAssertions;
 using CityPoiAPI.Entities;
+using FluentAssertions;
 using Tests.ControllerTests;
 using Xunit;
 
-namespace Tests
+namespace Tests.ModelStateTests
 {
     public class CityModelStateTest : BaseCityControllerTest
     {

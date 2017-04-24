@@ -39,7 +39,7 @@ namespace Tests.ControllerTests
         {
             var city = CityPoiItemBuilder.GenerateCity();
             FakeCityRepository.CityExists(city.Id).Returns(true);
-            var poi = CityPoiItemBuilder.GeneratePostPOIDTO();
+            var poi = CityPoiItemBuilder.GeneratePostPoidto();
             PoiController.ModelState.AddModelError("Error", "Model state error");  
 
             var result = PoiController.AddPointOfInterestToCity(city.Id, poi);
@@ -52,7 +52,7 @@ namespace Tests.ControllerTests
         {
             var city = CityPoiItemBuilder.GenerateCity();
             FakeCityRepository.CityExists(city.Id).Returns(true);
-            var poiDto = CityPoiItemBuilder.GeneratePostPOIDTO();
+            var poiDto = CityPoiItemBuilder.GeneratePostPoidto();
 
             var result = PoiController.AddPointOfInterestToCity(BadCityId, poiDto);
 

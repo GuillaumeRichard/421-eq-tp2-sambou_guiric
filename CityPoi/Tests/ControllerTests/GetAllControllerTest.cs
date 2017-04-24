@@ -15,7 +15,7 @@ namespace Tests.ControllerTests
             //Arrange
             const int listLength = 10;
             var cities = CityPoiItemBuilder.GenerateCityList(listLength);
-            var dtoList = cities.Select(city => new CityWithNoPOIDTO  //YM: Dans tous les tests, utiliser un mapper pour améliorer la lisibilité
+            var dtoList = cities.Select(city => new CityWithNoPOIDTO
             {
                 CityId = city.Id,
                 Name = city.Name,
