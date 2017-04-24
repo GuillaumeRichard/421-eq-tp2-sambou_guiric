@@ -27,14 +27,25 @@ namespace CityPoiAPI.Controllers
             }
 
             var city = _repository.GetCity(cityId, true);
+            var poi = _repository.GetPointOfInterestForCity(cityId, poiId);
 
-            foreach (var element in city.PointsOfInterest)  //YM: Pourquoi un foreach ?? Appeler le delete du repo.
+            if (poi == null)
             {
-                if (element.Id != poiId) continue;
-                _repository.DeletePointOfInterest(element);
-                return new NoContentResult();
+                return NotFound();
             }
-            return new NotFoundResult();
+            else
+            {
+                _repository.DeletePointOfInterest(poi);
+            }
+
+            return NoContent();
+            //foreach (var element in city.PointsOfInterest)  //YM: Pourquoi un foreach ?? Appeler le delete du repo.
+            //{
+            //    if (element.Id != poiId) continue;
+            //    _repository.DeletePointOfInterest(element);
+            //    return new NoContentResult();
+            //}
+            //return new NotFoundResult();
         }
 
         [HttpGet("{id}/pointsofinterest", Name = "GetPointsOfInterestForCity")]

@@ -13,12 +13,14 @@ namespace Tests.ControllerTests
         {
             //Arrange
             var city = CityPoiItemBuilder.GenerateCity();
+            var poi = city.PointsOfInterest.First();
             FakeCityRepository.GetCity(city.Id, true).Returns(city);
+            FakeCityRepository.GetPointOfInterestForCity(city.Id, poi.Id).Returns(poi);
             FakeCityRepository.CityExists(city.Id).Returns(true);
 
 
             //Action
-            PoiController.DeletePointOfIntetest(city.Id, city.PointsOfInterest.First().Id);
+            PoiController.DeletePointOfIntetest(city.Id, poi.Id);
 
 
             // Assert
@@ -59,7 +61,9 @@ namespace Tests.ControllerTests
         {
             //Arrange
             var city = CityPoiItemBuilder.GenerateCity();
+            var poi = city.PointsOfInterest.First();
             FakeCityRepository.CityExists(city.Id).Returns(true);
+            FakeCityRepository.GetPointOfInterestForCity(city.Id, poi.Id).Returns(poi);
             FakeCityRepository.GetCity(city.Id, true).Returns(city);
 
 
