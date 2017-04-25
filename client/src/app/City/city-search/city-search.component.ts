@@ -14,7 +14,7 @@ import {City} from "../shared/city.model";
 import {CitySearchService} from "../shared/city-service/city-search.service";
 
 @Component({
-  selector: 'app-city-search',
+  selector: 'city-search-component',
   templateUrl: './city-search.component.html',
   styleUrls: ['./city-search.component.css']
 })

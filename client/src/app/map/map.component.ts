@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 @Component({
   selector: 'map-component',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent {
+export class MapComponent implements OnInit{
   positions = [];
   selectedPos: Position;
+
+  ngOnInit(): void {
+
+  }
 
   onClick(event) {
     if (event instanceof MouseEvent)
