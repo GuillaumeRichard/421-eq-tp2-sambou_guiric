@@ -1,38 +1,36 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using CityPoiAPI.DTO;
-using CityPoiAPI.Entities;
+﻿using System.Linq;
 using FluentAssertions;
 using NSubstitute;
 using Xunit;
+using CityPoiAPI.DTO;
 
-namespace Tests.GetAllTest
+namespace Tests.ControllerTests
 {
     public class GetAllControllerTest : BaseCityControllerTest
     {
 
         [Fact]
-        public void GetCities_CititesExist_ReturnCityList()
+        public void GetCities_CititesExist_ReturnCityDtos()
         {
             //Arrange
-            var listLength = 10;
-            var cities = _cityPoiItemBuilder.GenerateCityList(listLength);
-            var DTOList = cities.Select(city => new CityWithNoPOIDTO
+            const int listLength = 10;
+            var cities = CityPoiItemBuilder.GenerateCityList(listLength);
+            var dtoList = cities.Select(city => new CityWithNoPOIDTO
             {
                 CityId = city.Id,
                 Name = city.Name,
                 Country = city.Country,
                 Population = city.Population
             }).ToList();
-            _fakeCityRepository.GetCities().Returns(cities);
+            FakeCityRepository.GetCities().Returns(cities);
 
 
             //Action
-            var result = _cityPoiController.GetAll();
+            var result = CityPoiController.GetAll();
 
 
             // Assert
-            result.ShouldBeEquivalentTo(DTOList);
+            result.ShouldBeEquivalentTo(dtoList);
         }
     }
 }
