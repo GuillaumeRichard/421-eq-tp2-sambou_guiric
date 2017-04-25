@@ -9,6 +9,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
+import {City} from "../shared/city.model";
+import {CitySearchService} from "../shared/city-service/city-search.service";
 
 @Component({
   selector: 'app-city-search',

@@ -5,16 +5,21 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { CitySearchComponent } from './City/city-search/city-search.component';
+import { MapComponent } from './map/map.component';
+
+import { NguiMapModule} from '@ngui/map';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CitySearchComponent
+    CitySearchComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyAOgYOBdHV3dc4M0bevQIpJ7MvgSyJ9GIU'})
   ],
   providers: [],
   bootstrap: [AppComponent]
