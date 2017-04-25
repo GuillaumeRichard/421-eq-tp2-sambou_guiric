@@ -8,13 +8,19 @@ import { CitySearchComponent } from './City/city-search/city-search.component';
 import { MapComponent } from './map/map.component';
 import { NguiMapModule} from '@ngui/map';
 import { PoiListComponent } from './POI/poi-list/poi-list.component';
+import { PoiDetailComponent } from './POI/poi-detail/poi-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CitySearchComponent,
+<<<<<<< HEAD
     MapComponent,
     PoiListComponent
+=======
+    PoiListComponent,
+    PoiDetailComponent
+>>>>>>> refs/remotes/origin/client
   ],
   imports: [
     BrowserModule,
