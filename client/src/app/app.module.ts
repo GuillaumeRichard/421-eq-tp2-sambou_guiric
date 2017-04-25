@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { CitySearchComponent } from './City/city-search/city-search.component';
+import { PoiListComponent } from './POI/poi-list/poi-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CitySearchComponent
+    CitySearchComponent,
+    PoiListComponent
   ],
   imports: [
     BrowserModule,

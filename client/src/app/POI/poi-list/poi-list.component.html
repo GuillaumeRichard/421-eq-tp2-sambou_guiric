@@ -1,0 +1,13 @@
+<ul class="poiList">
+  <li *ngFor="let poi of poiList" onmouseover="onSelect(poi)"
+      [class.selected]="poi === selectedPoi">
+    <span class="badge">{{poi.Id}}</span>
+    <span>{{poi.name}}</span>
+  </li>
+</ul>
+<div *ngIf="selectedHero">
+  <h2>
+    {{selectedHero.name | uppercase}} is my hero
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
