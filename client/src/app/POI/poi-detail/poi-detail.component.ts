@@ -11,7 +11,7 @@ import { PoiService } from '../shared/poi-list-service/poi-list.service';
   templateUrl: './poi-detail.component.html',
   styleUrls: [ './poi-detail.component.css' ]
 })
-export class HeroDetailComponent implements OnInit {
+export class PoiDetailComponent implements OnInit {
   @Input()
   poi: Poi;
   constructor(

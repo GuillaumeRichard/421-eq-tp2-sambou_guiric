@@ -1,4 +1,4 @@
-export default class PoiDefault {
+export class Poi {
   Id: number;
   Name: string;
   Description: string;
@@ -8,7 +8,7 @@ export default class PoiDefault {
   CityId: number;
 }
 
-export class Poi {
+export default class PoiDefault {
   Id: number;
   Name: string;
   Description: string;
@@ -21,3 +21,4 @@ export class Poi {
 // Default: pour le city.model
 // sans Default: pour poi-list.component
 // je ne sais pas pourquoi ça marche pas vice-versa
+
