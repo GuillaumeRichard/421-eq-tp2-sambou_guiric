@@ -5,15 +5,23 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { CitySearchComponent } from './City/city-search/city-search.component';
+<<<<<<< HEAD
 import { MapComponent } from './map/map.component';
 
 import { NguiMapModule} from '@ngui/map';
+=======
+import { PoiListComponent } from './POI/poi-list/poi-list.component';
+>>>>>>> refs/remotes/origin/client
 
 @NgModule({
   declarations: [
     AppComponent,
     CitySearchComponent,
+<<<<<<< HEAD
     MapComponent
+=======
+    PoiListComponent
+>>>>>>> refs/remotes/origin/client
   ],
   imports: [
     BrowserModule,
