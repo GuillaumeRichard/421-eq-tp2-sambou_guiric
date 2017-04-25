@@ -6,12 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { CitySearchComponent } from './City/city-search/city-search.component';
 import { PoiListComponent } from './POI/poi-list/poi-list.component';
+import { PoiDetailComponent } from './POI/poi-detail/poi-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CitySearchComponent,
-    PoiListComponent
+    PoiListComponent,
+    PoiDetailComponent
   ],
   imports: [
     BrowserModule,

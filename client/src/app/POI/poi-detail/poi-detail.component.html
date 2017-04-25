@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<div *ngIf="poi">
+  <h2>{{poi.name}}</h2>
+  <div>{{poi.image}}</div>
+  <div>
+    <input [(ngModel)]="poi.Description" placeholder="name"/>
+  </div>
+</div>
