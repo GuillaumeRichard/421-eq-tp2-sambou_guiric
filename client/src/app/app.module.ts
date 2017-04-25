@@ -14,13 +14,9 @@ import { PoiDetailComponent } from './POI/poi-detail/poi-detail.component';
   declarations: [
     AppComponent,
     CitySearchComponent,
-<<<<<<< HEAD
     MapComponent,
-    PoiListComponent
-=======
     PoiListComponent,
     PoiDetailComponent
->>>>>>> refs/remotes/origin/client
   ],
   imports: [
     BrowserModule,
