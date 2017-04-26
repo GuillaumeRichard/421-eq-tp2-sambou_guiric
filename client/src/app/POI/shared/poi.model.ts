@@ -7,8 +7,3 @@ export class Poi {
   Latitude: string;
   CityId: number;
 }
-
-// Default: pour le city.model
-// sans Default: pour poi-list.component
-// je ne sais pas pourquoi ça marche pas vice-versa
-

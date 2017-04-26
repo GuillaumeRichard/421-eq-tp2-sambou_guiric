@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { PoiService } from '../shared/poi-list-service/poi-list.service';
 import { Router } from '@angular/router';
-import {Poi} from '../shared/poi.model';
+import { Poi } from '../shared/poi.model';
 
 
 @Component({
