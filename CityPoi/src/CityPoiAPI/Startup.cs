@@ -28,9 +28,11 @@ namespace CityPoiAPI
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-
+            services.AddCors();
 
             services.AddMvc();
+
+   
 
             services.AddScoped<ICityRepository, CityRepositoryEntityFramework>();
 
@@ -43,6 +45,12 @@ namespace CityPoiAPI
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseCors(builder => builder
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+             );
 
             apiDbContext.EnsureSeedDataForContext();
             app.UseMvc();

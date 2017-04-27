@@ -19,11 +19,11 @@ export class PoiListComponent implements OnInit {
     private router: Router,
     private poiService: PoiService) { }
 
-  getPoiList(): void {
-    this.poiService.getPoiList().then(poiList => this.poiList = poiList);
+  getPoiList(name: string): void {
+    this.poiService.getPoiList(name).then(poiList => this.poiList = poiList);
   }
   ngOnInit(): void {
-    this.getPoiList();
+    this.getPoiList('');
   }
 
   onSelect(poi: Poi): void {

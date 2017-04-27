@@ -6,17 +6,24 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class PoiService {
-  private poiListUrl = 'api/PoiList';  // ******À CHANGER
+  private poiListUrl = 'http://localhost:59195/api/Cities/';
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
 
 
-  getPoiList(): Promise<Poi[]> {
-    return this.http.get(this.poiListUrl)
-      .toPromise()
-      .then(response  => response.json().data as Poi[])
-      .catch(this.handleError);
+  getPoiList(name: string): Promise<Poi[]> {
+    if (name === '') {
+      return this.http.get(this.poiListUrl + 'Morioh' + '/pointsofinterest')
+        .toPromise()
+        .then(response => response.json().data as Poi[])
+        .catch(this.handleError);
+    }
+
+      return this.http.get(this.poiListUrl + name + '/pointsofinterest')
+        .toPromise()
+        .then(response => response.json().data as Poi[])
+        .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

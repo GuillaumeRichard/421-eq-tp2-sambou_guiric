@@ -7,6 +7,7 @@ namespace CityPoiAPI.Services
     {
         bool CityExists(int cityId);
         IEnumerable<City> GetCities();
+        City GetCity(string name, bool includePointsOfInterest);
         City GetCity(int cityId, bool includePointsOfInterest);
         IEnumerable<PointOfInterest> GetPointsOfInterestForCity(int cityId);
         PointOfInterest GetPointOfInterestForCity(int cityId, int pointOfInterestId);

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CityPoiAPI.DTO;
+using CityPoiAPI.Entities;
 using CityPoiAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,18 +11,20 @@ namespace CityPoiAPI.Controllers
     [Route("api/Cities")]
     public class CityPoiController : Controller
     {
-        private readonly ICityRepository _repository;
+        private ICityRepository _repository;
+        private DTOMapper _DTOMapper;
 
         public CityPoiController(ICityRepository repository)
         {
             _repository = repository;
+            _DTOMapper = new DTOMapper();
         }
 
         [HttpGet]
         public List<CityWithNoPOIDTO> GetAll()
         {
             var cityList = _repository.GetCities();
-            var dtoList = cityList.Select(city => new CityWithNoPOIDTO
+            var DTOList = cityList.Select(city => new CityWithNoPOIDTO
             {
                 CityId = city.Id,
                 Name = city.Name,
@@ -28,13 +32,13 @@ namespace CityPoiAPI.Controllers
                 Population = city.Population
             }).ToList();
 
-            return dtoList;
+            return DTOList;
         }
 
-        [HttpGet("{id}", Name = "GetCity")]
-        public IActionResult GetCity(int id, bool includePointsOfInterest)
+        [HttpGet("{Name}", Name = "GetCity")]
+        public IActionResult GetCity(string Name, bool includePointsOfInterest)
         {
-            var city = _repository.GetCity(id, includePointsOfInterest);
+            var city = _repository.GetCity(Name, includePointsOfInterest);
 
             if (city == null)
             {

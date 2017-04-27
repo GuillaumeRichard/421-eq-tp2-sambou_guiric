@@ -26,6 +26,11 @@ namespace CityPoiAPI.DataAccessLayer
             return _context.Cities.ToList();
         }
 
+        public City GetCity(string name, bool includePointsOfInterest)
+        {
+            return _context.Cities.Include(c => c.PointsOfInterest).FirstOrDefault(x => x.Name == name);
+        }
+
         public City GetCity(int cityId, bool includePointsOfInterest)
         {
             return _context.Cities.Include(c => c.PointsOfInterest).FirstOrDefault(x => x.Id == cityId);
