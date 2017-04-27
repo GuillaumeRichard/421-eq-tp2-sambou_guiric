@@ -1,7 +1,5 @@
-<h1>Event Arguments</h1>
-Implementation of https://developers.google.com/maps/documentation/javascript/examples/event-arguments
-<br/><br/>
-Click the map to add marker and center it.
+<h1>Bienvenue à AirBnb version cheap!</h1>
+
 <ngui-map zoom="9" center="46.78589761, -71.28661394">
   <custom-marker *ngFor="let pos of positions" [position]="pos">
     <div class="custom-icon" on-mouseover="onSelect(pos); $event.stopPropagation()" [class.selected]="pos === selectedPos"></div>
