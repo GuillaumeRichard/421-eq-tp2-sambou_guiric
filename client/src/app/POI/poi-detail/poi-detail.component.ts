@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import { Poi } from '../shared/poi.model';
 
-import { PoiService } from '../shared/poi-list-service/poi-list.service';
+import { PoiListService } from '../shared/poi-list-service/poi-list.service';
 
 @Component({
   selector: 'my-poi-detail',
@@ -15,7 +15,7 @@ export class PoiDetailComponent implements OnInit {
   @Input()
   poi: Poi;
   constructor(
-    private poiService: PoiService,
+    private poiService: PoiListService,
     private route: ActivatedRoute,
   ) {}
   ngOnInit(): void {

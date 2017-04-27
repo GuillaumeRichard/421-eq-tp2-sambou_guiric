@@ -1,7 +1,8 @@
 /**
  * Created by Samuel on 2017-04-25.
  */
-import { Poi } from '../POI/shared/poi.model';
+import { Poi } from './poi.model';
+
 export const POIS: Poi[] = [
   {Id: 1,
    Name: 'Cegep Ste-Foy',
@@ -11,7 +12,7 @@ export const POIS: Poi[] = [
    Latitude: '-71.28661394',
    CityId: 1},
 
-  {Id: 1,
+  {Id: 2,
     Name: 'Château Frontenac',
     Description: 'L\'icône de la ville de Québec',
     Address: '2700, ch. Ste-Foy',
@@ -19,7 +20,7 @@ export const POIS: Poi[] = [
     Latitude: '-71.2044479',
     CityId: 1},
 
-  {Id: 1,
+  {Id: 3,
     Name: 'Île Madame',
     Description: 'Le lieu où se déroule le meilleur roman \'Les grandes marées\'',
     Address: '2700, ch. Ste-Foy',

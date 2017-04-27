@@ -9,6 +9,7 @@ import { MapComponent } from './map/map.component';
 import { NguiMapModule} from '@ngui/map';
 import { PoiListComponent } from './POI/poi-list/poi-list.component';
 import { PoiDetailComponent } from './POI/poi-detail/poi-detail.component';
+import { PoiListService } from "./POI/shared/poi-list-service/poi-list.service";
 
 @NgModule({
   declarations: [
@@ -20,11 +21,11 @@ import { PoiDetailComponent } from './POI/poi-detail/poi-detail.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
+    FormsModule,
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyAOgYOBdHV3dc4M0bevQIpJ7MvgSyJ9GIU'})
   ],
-  providers: [],
+  providers: [PoiListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

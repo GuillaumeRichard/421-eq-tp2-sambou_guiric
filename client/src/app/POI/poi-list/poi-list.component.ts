@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PoiService } from '../shared/poi-list-service/poi-list.service';
+import { PoiListService } from '../shared/poi-list-service/poi-list.service';
 import { Router } from '@angular/router';
 import {Poi} from "../shared/poi.model";
 
@@ -17,7 +17,7 @@ export class PoiListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private poiService: PoiService) { }
+    private poiService: PoiListService) { }
 
   getPoiList(): void {
     this.poiService.getPoiList().then(poiList => this.poiList = poiList);

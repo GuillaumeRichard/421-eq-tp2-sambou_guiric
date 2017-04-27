@@ -1,4 +1,4 @@
-import Poi from '../../POI/shared/poi.model';
+import {Poi} from '../../POI/shared/poi.model';
 
 export class City {
   Id: number;

@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 
 import { Poi } from '../poi.model';
 import { Http, Headers } from '@angular/http';
+import { POIS } from '../mock-pois';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class PoiService {
+export class PoiListService {
   private poiListUrl = 'api/PoiList';  // ******À CHANGER
   private headers = new Headers({'Content-Type': 'application/json'});
 
@@ -13,10 +14,11 @@ export class PoiService {
 
 
   getPoiList(): Promise<Poi[]> {
-    return this.http.get(this.poiListUrl)
-      .toPromise()
-      .then(response  => response.json().data as Poi[])
-      .catch(this.handleError);
+    return Promise.resolve(POIS);
+    // return this.http.get(this.poiListUrl)
+    //   .toPromise()
+    //   .then(response  => response.json().data as Poi[])
+    //   .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
