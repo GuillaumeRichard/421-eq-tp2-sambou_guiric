@@ -41,24 +41,15 @@ export class MapComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.getPoiPositions()
+  }
+
+  getPoiPositions() {
     for (var i = 0, length = this.poiList.length; i < length; i++)
     {
       var poi = this.poiList[i];
-      this.positions.push([poi.Longitude, poi.Latitude]);
-      console.log("Longitude = " + poi.Longitude);
-      console.log("Latitude = " + poi.Latitude);
+      this.positions.push([poi.Longitude, poi.Latitude])
     }
-
-    console.log(this.positions);
-  }
-
-  onClick(event) {
-    if (event instanceof MouseEvent)
-    {
-      return;
-    }
-    this.positions.push(event.latLng);
-    event.target.panTo(event.latLng);
   }
 
   onSelect(pos) {
