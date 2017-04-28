@@ -10,8 +10,8 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 
-import {City} from "../shared/city.model";
-import {CitySearchService} from "../shared/city-service/city-search.service";
+import {City} from '../shared/city.model';
+import {CitySearchService} from '../shared/city-service/city-search.service';
 
 @Component({
   selector: 'city-search-component',
@@ -49,7 +49,7 @@ export class CitySearchComponent implements OnInit {
   }
 
   gotoMap(city: City): void {
-    const link = ['/map', city.Id];
+    const link = ['/home', city.Id];
     this.router.navigate(link);
   }
 }

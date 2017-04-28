@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CityPoiAPI.Entities;
 using CityPoiAPI.Services;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CityPoiAPI.DataAccessLayer
@@ -20,20 +18,17 @@ namespace CityPoiAPI.DataAccessLayer
         public bool CityExists(int cityId)
         {
             var cities = _context.Cities.ToList();
-            foreach(var element in cities)
-            {
-                if(element.Id == cityId)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return cities.Any(element => element.Id == cityId);
         }
 
         public IEnumerable<City> GetCities()
         {
             return _context.Cities.ToList();
+        }
+
+        public City GetCity(string name, bool includePointsOfInterest)
+        {
+            return _context.Cities.Include(c => c.PointsOfInterest).FirstOrDefault(x => x.Name == name);
         }
 
         public City GetCity(int cityId, bool includePointsOfInterest)
@@ -50,14 +45,7 @@ namespace CityPoiAPI.DataAccessLayer
         public PointOfInterest GetPointOfInterestForCity(int cityId, int pointOfInterestId)
         {
             var city = _context.Cities.Include(c => c.PointsOfInterest).FirstOrDefault(x => x.Id == cityId);
-            foreach (var element in city.PointsOfInterest)
-            {
-                if (element.Id == pointOfInterestId)
-                {
-                    return element;
-                }
-            }
-            return null;
+            return city.PointsOfInterest.FirstOrDefault(element => element.Id == pointOfInterestId);
         }
 
         public void AddPointOfInterestForCity(int cityId, PointOfInterest pointOfInterest)
@@ -75,12 +63,12 @@ namespace CityPoiAPI.DataAccessLayer
         public void UpdatePointOfInterest(PointOfInterest newPointOfInterest)
         {
             var originalPoi = GetPointOfInterestForCity(newPointOfInterest.CityId, newPointOfInterest.Id);
-            originalPoi = MapPoi(newPointOfInterest, originalPoi);
+            originalPoi = MapPoi(newPointOfInterest, originalPoi); // YM: non nécessaire 
             _context.PointsOfInterest.Update(originalPoi);
             _context.SaveChanges();
         }
 
-        private PointOfInterest MapPoi(PointOfInterest newPointOfInterest, PointOfInterest originalPoi)
+        private static PointOfInterest MapPoi(PointOfInterest newPointOfInterest, PointOfInterest originalPoi)
         {
             originalPoi.Address = newPointOfInterest.Address;
             originalPoi.Description = newPointOfInterest.Description;

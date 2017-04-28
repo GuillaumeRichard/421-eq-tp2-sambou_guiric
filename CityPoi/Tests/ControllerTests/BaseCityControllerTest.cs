@@ -1,24 +1,27 @@
-﻿using NSubstitute;
-using CityPoiAPI.Controllers;
-using CityPoiAPI.Services;
+﻿using CityPoiAPI.Controllers;
 using CityPoiAPI.DTO;
+using CityPoiAPI.Services;
+using NSubstitute;
+using Tests.ItemBuilder;
 
-namespace Tests
+namespace Tests.ControllerTests
 {
     public class BaseCityControllerTest
     {
 
-        protected ICityRepository _fakeCityRepository;
-        protected CityPoiController _cityPoiController;
-        protected CityPoiItemBuilder _cityPoiItemBuilder;
-        protected DTOMapper _DTOMapper;
+        protected ICityRepository FakeCityRepository;
+        protected CityPoiController CityPoiController;
+        protected PoiController PoiController;
+        protected CityPoiItemBuilder CityPoiItemBuilder;
+        protected DTOMapper DtoMapper;
 
         public BaseCityControllerTest()
         {
-            _fakeCityRepository = Substitute.For<ICityRepository>();
-            _cityPoiController = new CityPoiController(_fakeCityRepository);
-            _cityPoiItemBuilder = new CityPoiItemBuilder();
-            _DTOMapper = new DTOMapper();
+            FakeCityRepository = Substitute.For<ICityRepository>();
+            CityPoiController = new CityPoiController(FakeCityRepository);
+            PoiController = new PoiController(FakeCityRepository);
+            CityPoiItemBuilder = new CityPoiItemBuilder();
+            DtoMapper = new DTOMapper();
         }
     }
 }

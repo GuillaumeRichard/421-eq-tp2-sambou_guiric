@@ -1,5 +1,5 @@
---temp-output:C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\obj\Debug\netcoreapp1.0\
---out:C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\bin\Debug\netcoreapp1.0\CityPoiAPI.dll
+--temp-output:C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\obj\Debug\netcoreapp1.0\
+--out:C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\bin\Debug\netcoreapp1.0\CityPoiAPI.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -179,22 +179,23 @@
 --reference:C:\Users\Krompy\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\Krompy\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\Krompy\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
---resource:"C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\obj\Debug\netcoreapp1.0\CityPoiAPIdotnet-compile.deps.json",CityPoiAPI.deps.json
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\Program.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\Startup.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\Controllers\CityPoiController.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\DataAccessLayer\ApiDbContext.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\DataAccessLayer\ApiDbContextExtension.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\DataAccessLayer\CityRepositoryEntityFramework.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\DTO\CityWithNoPOIDTO.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\DTO\CityWithPOIDTO.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\DTO\PointOfInterestDTO.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\DTO\PointsOfInterestDTO.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\DTO\PostPOIDTO.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\DTO\Mapper\DTOMapper.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\Entities\City.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\Entities\PointOfInterest.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\Migrations\20170308014857_cityPoi.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\Migrations\20170308014857_cityPoi.Designer.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\Migrations\ApiDbContextModelSnapshot.cs
-C:\Users\Krompy\Desktop\cerfrieux\hivers 2017\Prog. Application web\421-eq-tp1-guiric_sambou-1\CityPoi\src\CityPoiAPI\Services\ICityRepository.cs
+--resource:"C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\obj\Debug\netcoreapp1.0\CityPoiAPIdotnet-compile.deps.json",CityPoiAPI.deps.json
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Program.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Startup.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Controllers\CityPoiController.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Controllers\PoiController.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\DataAccessLayer\ApiDbContext.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\DataAccessLayer\ApiDbContextExtension.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\DataAccessLayer\CityRepositoryEntityFramework.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\DTO\CityWithNoPOIDTO.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\DTO\CityWithPOIDTO.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\DTO\PointOfInterestDTO.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\DTO\PointsOfInterestDTO.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\DTO\PostPOIDTO.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\DTO\Mapper\DTOMapper.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Entities\City.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Entities\PointOfInterest.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Migrations\20170308014857_cityPoi.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Migrations\20170308014857_cityPoi.Designer.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Migrations\ApiDbContextModelSnapshot.cs
+C:\Users\Krompy\Desktop\Ecole\hivers_2017\Prog. Application web\421-eq-tp2-sambou_guiric\CityPoi\src\CityPoiAPI\Services\ICityRepository.cs

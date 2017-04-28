@@ -1,18 +1,17 @@
-﻿using System;
-using Bogus;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using CityPoiAPI.Entities;
+using Bogus;
 using CityPoiAPI.Controllers;
+using CityPoiAPI.Entities;
 
-namespace Tests
+namespace Tests.ItemBuilder
 {
     public class CityPoiItemBuilder
     {
 
-        private Faker<City> _cityFaker;
-        private Faker<PointOfInterest> _POIFaker;
-        private Faker<PostPOIDTO> _PostPOIDTOFaker;
+        private readonly Faker<City> _cityFaker;
+        private readonly Faker<PointOfInterest> _poiFaker;
+        private readonly Faker<PostPOIDTO> _postPoidtoFaker;
 
         public CityPoiItemBuilder()
         {
@@ -22,7 +21,7 @@ namespace Tests
                           .RuleFor(o => o.Country, f => f.Lorem.Word())
                           .RuleFor(o => o.Population, f => f.Random.Int());
 
-            _POIFaker = new Faker<PointOfInterest>(locale: "fr")
+            _poiFaker = new Faker<PointOfInterest>(locale: "fr")
                 .RuleFor(o => o.Address, f => f.Address.StreetAddress())
                 .RuleFor(o => o.Description, f => f.Lorem.Sentence())
                 .RuleFor(o => o.Id, f => f.UniqueIndex)
@@ -30,7 +29,7 @@ namespace Tests
                 .RuleFor(o => o.Longitude, f => f.Address.Longitude().ToString())
                 .RuleFor(o => o.Latitude, f => f.Address.Latitude().ToString());
 
-            _PostPOIDTOFaker = new Faker<PostPOIDTO>(locale: "fr")
+            _postPoidtoFaker = new Faker<PostPOIDTO>(locale: "fr")
                 .RuleFor(o => o.Address, f => f.Address.StreetAddress())
                 .RuleFor(o => o.Description, f => f.Lorem.Sentence())
                 .RuleFor(o => o.Name, f => f.Lorem.Word())
@@ -41,17 +40,17 @@ namespace Tests
 
         public City GenerateCity()
         {
-            City city = _cityFaker.Generate();
-            List<PointOfInterest> POIList = GeneratePoiList(3, city);
-            city.PointsOfInterest = POIList;
+            var city = _cityFaker.Generate();
+            var poiList = GeneratePoiList(3, city);
+            city.PointsOfInterest = poiList;
             return city;
 
         }
 
         public List<City> GenerateCityList(int listLength)
         {
-            List<City> cityList = _cityFaker.Generate(listLength).ToList();
-            foreach (City element in cityList)
+            var cityList = _cityFaker.Generate(listLength).ToList();
+            foreach (var element in cityList)
             {
                 element.PointsOfInterest = GeneratePoiList(3, element);
             }
@@ -60,23 +59,24 @@ namespace Tests
 
         private List<PointOfInterest> GeneratePoiList(int listLength, City city)
         {
-            List<PointOfInterest> POIList = _POIFaker.Generate(listLength).ToList();
-            foreach(PointOfInterest element in POIList)
+            var poiList = _poiFaker.Generate(listLength).ToList();
+            foreach(var element in poiList)
             {
                 element.CityId = city.Id;
             }
-            return POIList;
+            return poiList;
         }
 
         public PointOfInterest GeneratePointOfInterest()
         {
-            return _POIFaker.Generate();
+            return _poiFaker.Generate();
         }
 
-        public PostPOIDTO GeneratePostPOIDTO()
+        public PostPOIDTO GeneratePostPoidto()
         {
-            return _PostPOIDTOFaker.Generate();
+            return _postPoidtoFaker.Generate();
         }
 
     }
 }
+

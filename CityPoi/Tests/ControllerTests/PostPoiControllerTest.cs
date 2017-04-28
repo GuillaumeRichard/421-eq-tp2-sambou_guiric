@@ -7,17 +7,16 @@ namespace Tests.ControllerTests
 {
     public class PostPoiControllerTest: BaseCityControllerTest
     {
-        private const int Any_City_Id = 1;
-        private const int Bad_City_Id = -1;
+        private const int BadCityId = -1;
 
         [Fact]
         public void AddPOI_POIIsNull_ReturnBadRequest()
         {
-            var city = _cityPoiItemBuilder.GenerateCity();
-            _fakeCityRepository.CityExists(city.Id).Returns(true);
+            var city = CityPoiItemBuilder.GenerateCity();
+            FakeCityRepository.CityExists(city.Id).Returns(true);
 
 
-            var result = _cityPoiController.AddPointOfInterestToCity(city.Id, null);
+            var result = PoiController.AddPointOfInterestToCity(city.Id, null);
 
             result.Should().BeOfType<BadRequestResult>();
         }
@@ -25,25 +24,25 @@ namespace Tests.ControllerTests
         [Fact]
         public void AddPOI_POIExist_CallsAddOnRepository()
         {
-            var city = _cityPoiItemBuilder.GenerateCity();
-            _fakeCityRepository.CityExists(city.Id).Returns(true);
-            var poi = _cityPoiItemBuilder.GeneratePointOfInterest();
-            var poiDTO = _DTOMapper.PoiToPostPoiDto(poi);
+            var city = CityPoiItemBuilder.GenerateCity();
+            FakeCityRepository.CityExists(city.Id).Returns(true);
+            var poi = CityPoiItemBuilder.GeneratePointOfInterest();
+            var poiDto = DtoMapper.PoiToPostPoiDto(poi);
 
-            var result = _cityPoiController.AddPointOfInterestToCity(city.Id, poiDTO);
+            var result = PoiController.AddPointOfInterestToCity(city.Id, poiDto);
 
             result.Should().BeOfType<CreatedAtRouteResult>();
         }
 
         [Fact]
-        public void AddPOI_BadItem_ReturnBadRequestWithError()
+        public void AddPOI_BadItem_ReturnBadRequestWithError() 
         {
-            var city = _cityPoiItemBuilder.GenerateCity();
-            _fakeCityRepository.CityExists(city.Id).Returns(true);
-            var poi = _cityPoiItemBuilder.GeneratePostPOIDTO();
-            _cityPoiController.ModelState.AddModelError("Error", "Model state error");
+            var city = CityPoiItemBuilder.GenerateCity();
+            FakeCityRepository.CityExists(city.Id).Returns(true);
+            var poi = CityPoiItemBuilder.GeneratePostPoidto();
+            PoiController.ModelState.AddModelError("Error", "Model state error");  
 
-            var result = _cityPoiController.AddPointOfInterestToCity(city.Id, poi);
+            var result = PoiController.AddPointOfInterestToCity(city.Id, poi);
 
             result.Should().BeOfType<BadRequestObjectResult>();
         }
@@ -51,11 +50,11 @@ namespace Tests.ControllerTests
         [Fact]
         public void AddPOI_BadAddress_ReturnBadRequestWithError()
         {
-            var city = _cityPoiItemBuilder.GenerateCity();
-            _fakeCityRepository.CityExists(city.Id).Returns(true);
-            var poiDTO = _cityPoiItemBuilder.GeneratePostPOIDTO();
+            var city = CityPoiItemBuilder.GenerateCity();
+            FakeCityRepository.CityExists(city.Id).Returns(true);
+            var poiDto = CityPoiItemBuilder.GeneratePostPoidto();
 
-            var result = _cityPoiController.AddPointOfInterestToCity(Bad_City_Id, poiDTO);
+            var result = PoiController.AddPointOfInterestToCity(BadCityId, poiDto);
 
             result.Should().BeOfType<NotFoundResult>();
         }

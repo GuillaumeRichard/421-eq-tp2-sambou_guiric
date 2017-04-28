@@ -8,7 +8,7 @@ namespace CityPoiAPI.DataAccessLayer
         public DbSet<City> Cities { get; set; }
         public DbSet<PointOfInterest> PointsOfInterest { get; set; }
 
-        public ApiDbContext(DbContextOptions<ApiDbContext> options)
+        public ApiDbContext(DbContextOptions options)
             : base(options)
         {
         }

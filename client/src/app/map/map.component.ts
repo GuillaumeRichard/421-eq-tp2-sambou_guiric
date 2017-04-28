@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PoiListService} from "../POI/shared/poi-list-service/poi-list.service";
+import {PoiService} from "../POI/shared/poi-list-service/poi-list.service";
 import {Poi} from "../POI/shared/poi.model";
 @Component({
   selector: 'map-component',
@@ -9,7 +9,7 @@ import {Poi} from "../POI/shared/poi.model";
 export class MapComponent implements OnInit{
   positions = [];
   selectedPos: Position;
-  poiService: PoiListService;
+  poiService: PoiService;
   poiList: Poi[] = [
   {Id: 1,
     Name: 'Cegep Ste-Foy',
@@ -36,7 +36,7 @@ export class MapComponent implements OnInit{
     CityId: 1},
 ];
 
-  constructor(poiService: PoiListService){
+  constructor(poiService: PoiService){
     this.poiService = poiService;
   }
 
