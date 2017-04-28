@@ -15,67 +15,50 @@ namespace CityPoiAPI.DataAccessLayer
 
             var poi1 = new PointOfInterest()
             {
-                Address = "1515 av. Smith",
-                Description = "A rock that bounces",
-                Name = "Bouncing rock",
-                Longitude = "100.2421",
-                Latitude = "25.2421"
+                Name = "Cegep Ste-Foy",
+                Description = "Le cegep le plus cool",
+                Address = "2700, ch. Ste-Foy",
+                Longitude = "46.78589761",
+                Latitude = "-71.28661394",
+                CityName = "Québec"
             };
 
             var poi2 = new PointOfInterest()
             {
-                Address = "1515 av. Johnson",
-                Description = "A rock that is named Angelo",
-                Name = "Angelo rock",
-                Longitude = "100.2321",
-                Latitude = "25.2321"
+                Name = "Château Frontenac",
+                Description = "L\'icône de la ville de Québec",
+                Address = "1, rue des Carrières",
+                Longitude = "46.810756",
+                Latitude = "-71.2044479",
+                CityName = "Québec"
             };
 
             var poi3 = new PointOfInterest()
             {
-                Address = "1515 av. Ghetto",
-                Description = "A neighbourhood that is bad",
-                Name = "Bad neighbourhood",
-                Longitude = "83.2021",
-                Latitude = "42.1921"
-            };
-
-            var poi4 = new PointOfInterest()
-            {
-                Address = "1515 av. Hood",
-                Description = "A rock with a face",
-                Name = "Face rock",
-                Longitude = "82.2021",
-                Latitude = "42.2021"
+                Name = "Plaines d'Abraham",
+                Description = "Lieu du Festival d'été de Québec",
+                Address = "Avenue Wilfrid-Laurier",
+                Longitude = "46.8015014",
+                Latitude = "-71.2173963",
+                CityName = "Québec"
             };
 
             apiDbContext.Cities.Add(new City()
             {
-                Name = "Morioh",
-                Country = "Japan",
-                Population = 3000,
+                Name = "Québec",
+                Country = "Canada",
+                Population = 300000,
                 PointsOfInterest = new List<PointOfInterest>()
                 {
                     poi1,
-                    poi2                    
-                }
-            });
-            apiDbContext.Cities.Add(new City()
-            {
-                Name = "Detroit",
-                Country = "USA",
-                Population = 3000,
-                PointsOfInterest = new List<PointOfInterest>()
-                {
-                    poi3,
-                    poi4                    
+                    poi2,
+                    poi3                    
                 }
             });
 
             apiDbContext.PointsOfInterest.Add(poi1);
             apiDbContext.PointsOfInterest.Add(poi2);
             apiDbContext.PointsOfInterest.Add(poi3);
-            apiDbContext.PointsOfInterest.Add(poi4);
 
             apiDbContext.SaveChanges();
         }
