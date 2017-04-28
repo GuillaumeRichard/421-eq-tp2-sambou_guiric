@@ -36,7 +36,7 @@ namespace CityPoiAPI
 
             services.AddScoped<ICityRepository, CityRepositoryEntityFramework>();
 
-            services.AddDbContext<ApiDbContext>(options => options.UseSqlite("Filename=./todo.sqlite"));
+            services.AddDbContext<ApiDbContext>(options => options.UseInMemoryDatabase());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
