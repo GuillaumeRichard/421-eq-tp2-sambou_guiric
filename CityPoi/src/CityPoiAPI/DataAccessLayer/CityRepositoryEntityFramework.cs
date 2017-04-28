@@ -43,12 +43,6 @@ namespace CityPoiAPI.DataAccessLayer
             return city.PointsOfInterest.FirstOrDefault(element => element.Name == pointOfInterestName);
         }
 
-        public void AddPointOfInterestForCity(string cityName, PointOfInterest pointOfInterest)
-        {
-            _context.Cities.Include(c => c.PointsOfInterest).FirstOrDefault(x => x.Name == cityName).PointsOfInterest.Add(pointOfInterest);
-            _context.SaveChanges();
-        }
-
         public void DeletePointOfInterest(PointOfInterest pointOfInterest)
         {
             _context.Cities.Include(c => c.PointsOfInterest).FirstOrDefault(x => x.Name == pointOfInterest.Name).PointsOfInterest.Remove(pointOfInterest);
