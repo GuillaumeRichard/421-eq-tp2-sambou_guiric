@@ -11,7 +11,7 @@ namespace CityPoiAPI.DTO
             return new PointOfInterest()
             {
                 Address = poiDTO.Address,
-                CityId = poiDTO.CityId,
+                CityName = poiDTO.CityName,
                 Description = poiDTO.Description,
                 Latitude = poiDTO.Latitude,
                 Longitude = poiDTO.Longitude,
@@ -24,7 +24,7 @@ namespace CityPoiAPI.DTO
             return new PostPOIDTO()
             {
                 Address = poi.Address,
-                CityId = poi.CityId,
+                CityName = poi.CityName,
                 Description = poi.Description,
                 Latitude = poi.Latitude,
                 Longitude = poi.Longitude,
@@ -38,7 +38,7 @@ namespace CityPoiAPI.DTO
             {
                 Id = poi.Id,
                 Address = poi.Address,
-                CityId = poi.CityId,
+                CityName = poi.CityName,
                 Description = poi.Description,
                 Latitude = poi.Latitude,
                 Longitude = poi.Longitude,
@@ -52,7 +52,7 @@ namespace CityPoiAPI.DTO
             {
                 Id = poiDTO.Id,
                 Address = poiDTO.Address,
-                CityId = poiDTO.CityId,
+                CityName = poiDTO.CityName,
                 Description = poiDTO.Description,
                 Latitude = poiDTO.Latitude,
                 Longitude = poiDTO.Longitude,

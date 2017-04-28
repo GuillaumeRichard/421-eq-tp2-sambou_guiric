@@ -10,7 +10,7 @@ namespace Tests.ControllerTests
     public class GetPointOfInterestControllerTest : BaseCityControllerTest
     {
 
-        private const int BadId = 0;
+        private const string BadName = "badname";
 
         [Fact]
         public void GetPoi_PoiExist_ReturnPointOfInterestDTO()
@@ -19,7 +19,7 @@ namespace Tests.ControllerTests
             var poi = city.PointsOfInterest.First();
             var poiDto = new PointOfInterestDTO
             {
-                CityId = poi.CityId,
+                CityName = poi.CityName,
                 Name = poi.Name,
                 Address = poi.Address,
                 Description = poi.Description,
@@ -28,11 +28,11 @@ namespace Tests.ControllerTests
                 Longitude = poi.Longitude
 
             };
-            FakeCityRepository.GetPointOfInterestForCity(city.Id, poi.Id).Returns(poi);
-            FakeCityRepository.CityExists(city.Id).Returns(true);
+            FakeCityRepository.GetPointOfInterestForCity(city.Name, poi.Name).Returns(poi);
+            FakeCityRepository.CityExists(city.Name).Returns(true);
 
 
-            var result = PoiController.GetPointOfInterest(city.Id, poi.Id);
+            var result = PoiController.GetPointOfInterest(city.Name, poi.Name);
 
 
             result.Should().BeOfType<ObjectResult>().Which.Value.ShouldBeEquivalentTo(poiDto);
@@ -42,10 +42,10 @@ namespace Tests.ControllerTests
         public void GetPoi_PoiDoesNotExist_ReturnNotFoundResult()
         {
             var city = CityPoiItemBuilder.GenerateCity();
-            FakeCityRepository.CityExists(city.Id).Returns(true);
+            FakeCityRepository.CityExists(city.Name).Returns(true);
 
 
-            var result = PoiController.GetPointOfInterest(city.Id, BadId);
+            var result = PoiController.GetPointOfInterest(city.Name, BadName);
 
 
             result.Should().BeOfType<NotFoundResult>();
@@ -56,10 +56,10 @@ namespace Tests.ControllerTests
         {
             var city = CityPoiItemBuilder.GenerateCity();
             var poi = city.PointsOfInterest.First();
-            FakeCityRepository.CityExists(city.Id).Returns(false);
+            FakeCityRepository.CityExists(city.Name).Returns(false);
 
 
-            var result = PoiController.GetPointOfInterest(city.Id, poi.Id);
+            var result = PoiController.GetPointOfInterest(city.Name, poi.Name);
 
 
             result.Should().BeOfType<NotFoundResult>();

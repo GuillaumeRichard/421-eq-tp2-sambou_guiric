@@ -5,13 +5,12 @@ namespace CityPoiAPI.Services
 {
     public interface ICityRepository
     {
-        bool CityExists(int cityId);
+        bool CityExists(string cityName);
         IEnumerable<City> GetCities();
         City GetCity(string name, bool includePointsOfInterest);
-        City GetCity(int cityId, bool includePointsOfInterest);
-        IEnumerable<PointOfInterest> GetPointsOfInterestForCity(int cityId);
-        PointOfInterest GetPointOfInterestForCity(int cityId, int pointOfInterestId);
-        void AddPointOfInterestForCity(int cityId, PointOfInterest pointOfInterest);
+        IEnumerable<PointOfInterest> GetPointsOfInterestForCity(string cityName);
+        PointOfInterest GetPointOfInterestForCity(string cityName, string pointOfInterestName);
+        void AddPointOfInterestForCity(string cityName, PointOfInterest pointOfInterest);
         void DeletePointOfInterest(PointOfInterest pointOfInterest);
         void UpdatePointOfInterest(PointOfInterest pointOfInterest);
     }

@@ -12,6 +12,6 @@
 
         public string Latitude { get; set; }
 
-        public int CityId { get; set; }
+        public string CityName { get; set; }
     }
 }

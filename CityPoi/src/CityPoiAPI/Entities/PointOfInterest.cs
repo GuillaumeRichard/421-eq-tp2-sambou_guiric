@@ -30,8 +30,8 @@ namespace CityPoiAPI.Entities
         [RegularExpression("-?([0-8]?[0-9][,.][0-9]+|90[,.]0+)")]
         public string Latitude { get; set; }
 
-        [ForeignKey("CityId")]
+        [ForeignKey("CityName")]
         [Required]
-        public int CityId { get; set; }
+        public string CityName { get; set; }
     }
 }
