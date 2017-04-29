@@ -13,17 +13,11 @@ export class PoiService {
   constructor(private http: Http) { }
 
   getPoiList(name: string): Promise<Poi[]> {
-    if (name === '') {
-      return this.http.get(this.poiListUrl + 'Morioh' + '/pointsofinterest')
-        .toPromise()
-        .then(response => response.json().data as Poi[])
-        .catch(this.handleError);
-    }
+    const url = this.poiListUrl + name + '/pointsofinterest';
+      let poiList = this.http.get(url, {headers: this.headers});
+      let promise = poiList.toPromise().then(response => response.json().data as Poi[]).catch(this.handleError);
 
-      return this.http.get(this.poiListUrl + name + '/pointsofinterest')
-        .toPromise()
-        .then(response => response.json().data as Poi[])
-        .catch(this.handleError);
+      return promise;
   }
 
   private handleError(error: any): Promise<any> {
