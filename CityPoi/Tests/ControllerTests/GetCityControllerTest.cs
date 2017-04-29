@@ -8,13 +8,13 @@ namespace Tests.ControllerTests
 {
     public class GetCityControllerTest : BaseCityControllerTest
     {
-        private const string BadName = "BadName";
+        private const int BadId = 0;
 
         [Fact]
         public void GetCity_ItemExistAndPOIisRequested_ReturnCityWithPOIDTO()
         {
             var city = CityPoiItemBuilder.GenerateCity();
-            var cityDto = new CityWithPOIDTO
+            var cityDto = new CityWithPOIDTO 
             {
                 CityId = city.Id,
                 Name = city.Name,
@@ -22,10 +22,10 @@ namespace Tests.ControllerTests
                 POIList = city.PointsOfInterest,
                 Population = city.Population
             };
-            FakeCityRepository.GetCity(city.Name, true).Returns(city);
+            FakeCityRepository.GetCity(city.Id, true).Returns(city);
 
 
-            var result = CityPoiController.GetCity(city.Name, true);
+            var result = CityPoiController.GetCity(city.Id, true);
 
 
             result.Should().BeOfType<ObjectResult>().Which.Value.ShouldBeEquivalentTo(cityDto);
@@ -42,10 +42,10 @@ namespace Tests.ControllerTests
                 Country = city.Country,
                 Population = city.Population
             };
-            FakeCityRepository.GetCity(city.Name, false).Returns(city);
+            FakeCityRepository.GetCity(city.Id, false).Returns(city);
 
 
-            var result = CityPoiController.GetCity(city.Name, false);
+            var result = CityPoiController.GetCity(city.Id, false);
 
 
             result.Should().BeOfType<ObjectResult>().Which.Value.ShouldBeEquivalentTo(cityDto);
@@ -53,8 +53,8 @@ namespace Tests.ControllerTests
 
         [Fact]
         public void GetCity_ItemDoesntExistAndPOIisRequested_ReturnNotFoundResult()
-        {
-            var result = CityPoiController.GetCity(BadName, true);
+        {     
+            var result = CityPoiController.GetCity(BadId, true);
 
 
             result.Should().BeOfType<NotFoundResult>();
@@ -71,10 +71,10 @@ namespace Tests.ControllerTests
                 Country = city.Country,
                 Population = city.Population
             };
-            FakeCityRepository.GetCity(city.Name, false).Returns(city);
+            FakeCityRepository.GetCity(city.Id, false).Returns(city);
 
 
-            var result = CityPoiController.GetCity(city.Name, false);
+            var result = CityPoiController.GetCity(city.Id, false);
 
 
             result.Should().BeOfType<ObjectResult>().Which.Value.ShouldBeEquivalentTo(cityDto);
@@ -83,7 +83,7 @@ namespace Tests.ControllerTests
         [Fact]
         public void GetCity_ItemDoesntExistAndPOIisNotRequested_ReturnNotFoundResult()
         {
-            var result = CityPoiController.GetCity(BadName, false);
+            var result = CityPoiController.GetCity(BadId, false);
 
 
             result.Should().BeOfType<NotFoundResult>();
