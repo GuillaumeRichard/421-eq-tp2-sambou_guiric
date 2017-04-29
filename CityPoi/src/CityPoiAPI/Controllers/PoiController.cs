@@ -19,7 +19,7 @@ namespace CityPoiAPI.Controllers
         }
 
         [HttpDelete("{cityId}/pointsofinterest/{poiId}", Name = "DeletePointOfInterest")]
-        public IActionResult DeletePointOfIntetest(string cityId, string poiId)
+        public IActionResult DeletePointOfIntetest(int cityId, int poiId)
         {
             if (!_repository.CityExists(cityId))
             {
@@ -40,15 +40,15 @@ namespace CityPoiAPI.Controllers
             return NoContent();
         }
 
-        [HttpGet("{name}/pointsofinterest", Name = "GetPointsOfInterestForCity")]
-        public IActionResult GetPointsOfInterestForCity(string name)
+        [HttpGet("{id}/pointsofinterest", Name = "GetPointsOfInterestForCity")]
+        public IActionResult GetPointsOfInterestForCity(int id)
         {
-            if (!_repository.CityExists(name))
+            if (!_repository.CityExists(id))
             {
                 return new NotFoundResult();
             }
 
-            var cityPoIs = _repository.GetPointsOfInterestForCity(name);
+            var cityPoIs = _repository.GetPointsOfInterestForCity(id);
 
             if (cityPoIs == null)
             {
@@ -63,7 +63,7 @@ namespace CityPoiAPI.Controllers
         }
 
         [HttpGet("{cityId}/pointsofinterest/{poiId}", Name = "GetPointOfInterest")]
-        public IActionResult GetPointOfInterest(string cityId, string poiId)
+        public IActionResult GetPointOfInterest(int cityId, int poiId)
         {
             if (!_repository.CityExists(cityId))
             {
@@ -83,17 +83,39 @@ namespace CityPoiAPI.Controllers
                 Name = poi.Name,
                 Address = poi.Address,
                 Description = poi.Description,
-                CityName = poi.CityName,
+                CityId = poi.CityId,
                 Longitude = poi.Longitude,
                 Latitude = poi.Latitude
             });
         }
 
+        [HttpPost]
+        [Route("{cityId}/pointsofInterest", Name = "AddPointOfInterest")]
+        public IActionResult AddPointOfInterestToCity(int cityId, [FromBody] PostPOIDTO poiDto)
+        {
+            if (!_repository.CityExists(cityId))
+            {
+                return new NotFoundResult();
+            }
+            if (poiDto == null)
+            {
+                return BadRequest();
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var poi = _dtoMapper.PostPoiDtoToPoi(poiDto);
+            _repository.AddPointOfInterestForCity(cityId, poi);
+            return CreatedAtRoute("AddPointOfInterest", new { id = poi.Id }, poi);
+        }
+
         [HttpPut]
         [Route("{cityId}/pointsofInterest/{poiId}", Name = "PutPointOfInterest")]
-        public IActionResult UpdatePointOfInterest(string poiId, [FromBody] PointOfInterestDTO poiDto)
+        public IActionResult UpdatePointOfInterest(int poiId, [FromBody] PointOfInterestDTO poiDto)
         {
-            if (poiDto == null || poiDto.Name != poiId)
+            if (poiDto == null || poiDto.Id != poiId)
             {
                 return BadRequest();
             }
@@ -117,8 +139,8 @@ namespace CityPoiAPI.Controllers
         private bool ValidatePoiExists(PointOfInterest poi)
         {
             const bool includePointsOfInterest = true;
-            var city = _repository.GetCity(poi.CityName, includePointsOfInterest);
-            return city.PointsOfInterest.Any(element => element.Name == poi.Name);
+            var city = _repository.GetCity(poi.CityId, includePointsOfInterest);
+            return city.PointsOfInterest.Any(element => element.Id == poi.Id);
         }
 
     }

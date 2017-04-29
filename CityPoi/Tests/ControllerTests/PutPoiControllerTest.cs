@@ -7,28 +7,28 @@ namespace Tests.ControllerTests
 {
     public class PutPoiControllerTest: BaseCityControllerTest
     {
-        private const string GoodName = "GoodName"; 
-        private const string NotMatchingName = "NotMatchingName";
-        private const string BadName = "BadName";
+        private const int GoodId = 1; 
+        private const int NotMatchingId = 2;
+        private const int BadId = -999;
         private const bool IncludePointsOfInterest = true;
 
         [Fact]
         public void UpdatePointOfInterest_PoiIsNull_ReturnBadRequest()
         {
-            var result = PoiController.UpdatePointOfInterest(GoodName, null);
+            var result = PoiController.UpdatePointOfInterest(GoodId, null);
 
 
             result.Should().BeOfType<BadRequestResult>();
         }
 
         [Fact]
-        public void Update_NameDoesNotMatchItemName_ReturnBadRequest()
+        public void Update_IdDoesNotMatchItemId_ReturnBadRequest()
         {
             var poi = CityPoiItemBuilder.GeneratePointOfInterest();
             var poiDto = DtoMapper.PoiToPoiDto(poi);
 
 
-            var result = PoiController.UpdatePointOfInterest(NotMatchingName, poiDto);
+            var result = PoiController.UpdatePointOfInterest(NotMatchingId, poiDto);
 
 
             result.Should().BeOfType<BadRequestResult>();
@@ -39,13 +39,13 @@ namespace Tests.ControllerTests
         {
             var city = CityPoiItemBuilder.GenerateCity();
             var poi = CityPoiItemBuilder.GeneratePointOfInterest();
-            poi.Name = BadName;
-            poi.CityName = city.Name;
+            poi.Id = BadId;
+            poi.CityId = city.Id;
             var poiDto = DtoMapper.PoiToPoiDto(poi);
-            FakeCityRepository.GetCity(city.Name, IncludePointsOfInterest).Returns(city);
+            FakeCityRepository.GetCity(city.Id, IncludePointsOfInterest).Returns(city);
 
 
-            var result = PoiController.UpdatePointOfInterest(BadName, poiDto);
+            var result = PoiController.UpdatePointOfInterest(BadId, poiDto);
 
 
             result.Should().BeOfType<NotFoundResult>();
@@ -57,11 +57,11 @@ namespace Tests.ControllerTests
             var city = CityPoiItemBuilder.GenerateCity();
             var poi = CityPoiItemBuilder.GeneratePointOfInterest();
             city.PointsOfInterest.Add(poi);
-            poi.CityName = city.Name;
+            poi.CityId = city.Id;
             var poiDto = DtoMapper.PoiToPoiDto(poi);
-            FakeCityRepository.GetCity(city.Name, IncludePointsOfInterest).Returns(city);
+            FakeCityRepository.GetCity(city.Id, IncludePointsOfInterest).Returns(city);
 
-            var result = PoiController.UpdatePointOfInterest(poi.Name, poiDto);
+            var result = PoiController.UpdatePointOfInterest(poi.Id, poiDto);
 
             result.Should().BeOfType<NoContentResult>();
         }
@@ -75,7 +75,7 @@ namespace Tests.ControllerTests
             PoiController.ModelState.AddModelError("Error", "Model state error");
 
             //Action
-            var result = PoiController.UpdatePointOfInterest(poi.Name, poiDto);
+            var result = PoiController.UpdatePointOfInterest(poi.Id, poiDto);
 
             //Assert 
             result.Should().BeOfType<BadRequestObjectResult>();

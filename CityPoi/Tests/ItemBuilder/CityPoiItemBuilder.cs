@@ -27,15 +27,14 @@ namespace Tests.ItemBuilder
                 .RuleFor(o => o.Id, f => f.UniqueIndex)
                 .RuleFor(o => o.Name, f => f.Lorem.Word())
                 .RuleFor(o => o.Longitude, f => f.Address.Longitude().ToString())
-                .RuleFor(o => o.Latitude, f => f.Address.Latitude().ToString())
-                .RuleFor(o => o.CityName, f => f.Lorem.Word());
+                .RuleFor(o => o.Latitude, f => f.Address.Latitude().ToString());
 
             _postPoidtoFaker = new Faker<PostPOIDTO>(locale: "fr")
                 .RuleFor(o => o.Address, f => f.Address.StreetAddress())
                 .RuleFor(o => o.Description, f => f.Lorem.Sentence())
                 .RuleFor(o => o.Name, f => f.Lorem.Word())
                 .RuleFor(o => o.Longitude, f => f.Address.Longitude().ToString())
-                .RuleFor(o => o.CityName, f => f.Lorem.Word())
+                .RuleFor(o => o.CityId, f => f.UniqueIndex)
                 .RuleFor(o => o.Latitude, f => f.Address.Latitude().ToString());
         }
 
@@ -63,7 +62,7 @@ namespace Tests.ItemBuilder
             var poiList = _poiFaker.Generate(listLength).ToList();
             foreach(var element in poiList)
             {
-                element.CityName = city.Name;
+                element.CityId = city.Id;
             }
             return poiList;
         }

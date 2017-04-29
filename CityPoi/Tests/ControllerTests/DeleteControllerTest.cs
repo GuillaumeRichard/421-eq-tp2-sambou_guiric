@@ -14,13 +14,13 @@ namespace Tests.ControllerTests
             //Arrange
             var city = CityPoiItemBuilder.GenerateCity();
             var poi = city.PointsOfInterest.First();
-            FakeCityRepository.GetCity(city.Name, true).Returns(city);
-            FakeCityRepository.GetPointOfInterestForCity(city.Name, poi.Name).Returns(poi);
-            FakeCityRepository.CityExists(city.Name).Returns(true);
+            FakeCityRepository.GetCity(city.Id, true).Returns(city);
+            FakeCityRepository.GetPointOfInterestForCity(city.Id, poi.Id).Returns(poi);
+            FakeCityRepository.CityExists(city.Id).Returns(true);
 
 
             //Action
-            PoiController.DeletePointOfIntetest(city.Name, poi.Name);
+            PoiController.DeletePointOfIntetest(city.Id, poi.Id);
 
 
             // Assert
@@ -34,7 +34,7 @@ namespace Tests.ControllerTests
             var city = CityPoiItemBuilder.GenerateCity();
 
             //Action
-            var result = PoiController.DeletePointOfIntetest(city.Name, city.PointsOfInterest.First().Name);
+            var result = PoiController.DeletePointOfIntetest(city.Id, city.PointsOfInterest.First().Id);
 
             // Assert
             result.Should().BeOfType<NotFoundResult>();
@@ -42,15 +42,15 @@ namespace Tests.ControllerTests
 
         [Fact]
         public void Delete_PoiIsNotInRepository_ReturnsNotFound()
-        {   
-            const string badName = "badName";
+        {
+            const int badId = 0;
             //Arrange
              var city = CityPoiItemBuilder.GenerateCity();
-            FakeCityRepository.CityExists(city.Name).Returns(true);
-            FakeCityRepository.GetCity(city.Name, true).Returns(city);
+            FakeCityRepository.CityExists(city.Id).Returns(true);
+            FakeCityRepository.GetCity(city.Id, true).Returns(city);
 
             //Action
-            var result = PoiController.DeletePointOfIntetest(city.Name, badName);
+            var result = PoiController.DeletePointOfIntetest(city.Id, badId);
 
             // Assert
             result.Should().BeOfType<NotFoundResult>();
@@ -62,13 +62,13 @@ namespace Tests.ControllerTests
             //Arrange
             var city = CityPoiItemBuilder.GenerateCity();
             var poi = city.PointsOfInterest.First();
-            FakeCityRepository.CityExists(city.Name).Returns(true);
-            FakeCityRepository.GetPointOfInterestForCity(city.Name, poi.Name).Returns(poi);
-            FakeCityRepository.GetCity(city.Name, true).Returns(city);
+            FakeCityRepository.CityExists(city.Id).Returns(true);
+            FakeCityRepository.GetPointOfInterestForCity(city.Id, poi.Id).Returns(poi);
+            FakeCityRepository.GetCity(city.Id, true).Returns(city);
 
 
             //Action
-            var result = PoiController.DeletePointOfIntetest(city.Name, city.PointsOfInterest.First().Name);
+            var result = PoiController.DeletePointOfIntetest(city.Id, city.PointsOfInterest.First().Id);
 
 
             // Assert

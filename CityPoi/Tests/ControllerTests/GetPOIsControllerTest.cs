@@ -14,8 +14,8 @@ namespace Tests.ControllerTests
         {
             //Arrange
             var city = CityPoiItemBuilder.GenerateCity();
-            FakeCityRepository.GetPointsOfInterestForCity(city.Name).Returns(city.PointsOfInterest);
-            FakeCityRepository.CityExists(city.Name).Returns(true);
+            FakeCityRepository.GetPointsOfInterestForCity(city.Id).Returns(city.PointsOfInterest);
+            FakeCityRepository.CityExists(city.Id).Returns(true);
 
             var poiDto = new PointsOfInterestDTO
             {
@@ -23,7 +23,7 @@ namespace Tests.ControllerTests
             };
 
             //Action
-            var result = PoiController.GetPointsOfInterestForCity(city.Name);
+            var result = PoiController.GetPointsOfInterestForCity(city.Id);
 
 
             // Assert
@@ -34,10 +34,10 @@ namespace Tests.ControllerTests
         public void GetPoiList_CityNotFound_ReturnNotFound()
         {
             //Arrange
-            const string badName = "badName";
+            const int badId = -99999999;
 
             //Action
-            var result = PoiController.GetPointsOfInterestForCity(badName);
+            var result = PoiController.GetPointsOfInterestForCity(badId);
 
             // Assert
             result.Should().BeOfType<NotFoundResult>();
@@ -49,10 +49,10 @@ namespace Tests.ControllerTests
             //Arrange
             var city = CityPoiItemBuilder.GenerateCity();
             city.PointsOfInterest = null;
-            FakeCityRepository.GetPointsOfInterestForCity(city.Name).Returns(city.PointsOfInterest);
+            FakeCityRepository.GetPointsOfInterestForCity(city.Id).Returns(city.PointsOfInterest);
 
             //Action
-            var result = PoiController.GetPointsOfInterestForCity(city.Name);
+            var result = PoiController.GetPointsOfInterestForCity(city.Id);
 
             // Assert
             result.Should().BeOfType<NotFoundResult>();
