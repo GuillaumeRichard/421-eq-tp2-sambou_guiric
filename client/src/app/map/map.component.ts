@@ -20,14 +20,13 @@ export class MapComponent implements OnInit{
 
   ngOnInit(): void {
     this.getPoiList(this.DEFAULT_CITY).then(() => this.getPoiPositions());
-    // this.getPoiPositions();
   }
 
   getPoiList(name: string): Promise<Poi[]> {
     return this.poiService.getPoiList(name).then(poiList => this.poiList = poiList);
   }
 
-  getPoiPositions() {
+  getPoiPositions(): void {
     for (let i = 0, length = this.poiList.length; i < length; i++)
     {
       let poi = this.poiList[i];
@@ -35,7 +34,34 @@ export class MapComponent implements OnInit{
     }
   }
 
-  onSelect(pos) {
+  onClick(event): void {
+    let marker = event.target;
+    let clickedPoi = this.getPoiByPosition(marker);
+    this.showPoiDetail(marker, clickedPoi);
+  }
+
+  getPoiByPosition(marker): Poi {
+    let markerLongitude = marker.getPosition().lat();
+    let markerLatitude = marker.getPosition().lng();
+    let poiToReturn: Poi;
+    for (let i = 0, length = this.poiList.length; i < length; i++)
+    {
+      let poi = this.poiList[i];
+      if(markerLongitude == poi.longitude && markerLatitude == poi.latitude) {
+        poiToReturn = poi;
+      }
+    }
+
+    return poiToReturn;
+  }
+
+  showPoiDetail(marker, clickedPoi): void {
+    marker.nguiMapComponent.openInfoWindow('iw', marker, {
+      nom: clickedPoi.name
+    });
+  }
+
+  onSelect(pos): void {
     this.selectedPos = pos;
   }
 
