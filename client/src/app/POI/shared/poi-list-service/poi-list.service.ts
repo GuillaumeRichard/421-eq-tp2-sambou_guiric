@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { Poi } from '../poi.model';
 import { Http, Headers } from '@angular/http';
-import { POIS } from '../mock-pois';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -14,10 +13,10 @@ export class PoiService {
 
   getPoiList(name: string): Promise<Poi[]> {
     const url = this.poiListUrl + name + '/pointsofinterest';
-      let poiList = this.http.get(url, {headers: this.headers});
-      let promise = poiList.toPromise().then(response => response.json().data as Poi[]).catch(this.handleError);
-
-      return promise;
+    return this.http.get(url, this.headers)
+      .toPromise()
+      .then(response => response.json().poiList as Poi[])
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

@@ -40,26 +40,61 @@ namespace CityPoiAPI.Controllers
             return NoContent();
         }
 
-        [HttpGet("{id}/pointsofinterest", Name = "GetPointsOfInterestForCity")]
-        public IActionResult GetPointsOfInterestForCity(int id)
+        //POUR VOIR SI GET POI LIST SUR LE CLIENT MARCHE
+        //[HttpGet("{id}/pointsofinterest", Name = "GetPointsOfInterestForCity")]
+        //public IActionResult GetPointsOfInterestForCity(int id)
+        //{
+        //    if (!_repository.CityExists(id))
+        //    {
+        //        return new NotFoundResult();
+        //    }
+
+        //    var cityPoIs = _repository.GetPointsOfInterestForCity(id);
+
+        //    if (cityPoIs == null)
+        //    {
+        //        return new NotFoundResult(); 
+        //    }
+
+
+        //    return new ObjectResult(new PointsOfInterestDTO
+        //    {
+        //        POIList = cityPoIs.ToList()
+        //    });
+        //}
+
+        [HttpGet("{name}/pointsofinterest", Name = "GetPointsOfInterestForCity")]
+        public IActionResult GetPointsOfInterestForCity(string name)
         {
-            if (!_repository.CityExists(id))
+            var cities = _repository.GetCities();
+            //a encapsuler
+            City selectedCity = null;
+            foreach (var city in cities)
+            {
+                if (city.Name.Equals(name))
+                {
+                    selectedCity = city;
+                }
+            }
+
+            if (selectedCity == null)
+            {
+                return NotFound();
+            }
+
+            var cityPoIs = _repository.GetPointsOfInterestForCity(selectedCity.Id);
+
+            if (cityPoIs == null)
             {
                 return new NotFoundResult();
             }
 
-            var cityPoIs = _repository.GetPointsOfInterestForCity(id);
-
-            if (cityPoIs == null)
-            {
-                return new NotFoundResult(); 
-            }
-
-
-            return new ObjectResult(new PointsOfInterestDTO
+            var objectResult = new ObjectResult(new PointsOfInterestDTO
             {
                 POIList = cityPoIs.ToList()
             });
+
+            return objectResult;
         }
 
         [HttpGet("{cityId}/pointsofinterest/{poiId}", Name = "GetPointOfInterest")]

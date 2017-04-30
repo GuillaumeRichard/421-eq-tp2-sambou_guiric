@@ -20,7 +20,6 @@ namespace CityPoiAPI.DataAccessLayer
                 Address = "2700, ch. Ste-Foy",
                 Longitude = "46.78589761",
                 Latitude = "-71.28661394",
-                CityName = "Québec"
             };
 
             var poi2 = new PointOfInterest()
@@ -30,7 +29,6 @@ namespace CityPoiAPI.DataAccessLayer
                 Address = "1, rue des Carrières",
                 Longitude = "46.810756",
                 Latitude = "-71.2044479",
-                CityName = "Québec"
             };
 
             var poi3 = new PointOfInterest()
@@ -40,12 +38,11 @@ namespace CityPoiAPI.DataAccessLayer
                 Address = "Avenue Wilfrid-Laurier",
                 Longitude = "46.8015014",
                 Latitude = "-71.2173963",
-                CityName = "Québec"
             };
 
             apiDbContext.Cities.Add(new City()
             {
-                Name = "Québec",
+                Name = "Quebec",
                 Country = "Canada",
                 Population = 300000,
                 PointsOfInterest = new List<PointOfInterest>()

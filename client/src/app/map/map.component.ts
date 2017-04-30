@@ -11,29 +11,29 @@ export class MapComponent implements OnInit{
   selectedPos: Position;
   poiService: PoiService;
   poiList: Poi[] = [
-  {Id: 1,
-    Name: 'Cegep Ste-Foy',
-    Description: 'Le cegep le plus cool',
-    Address: '2700, ch. Ste-Foy',
-    Longitude: '46.78589761',
-    Latitude: '-71.28661394',
-    CityId: 1},
+  {id: 1,
+    name: 'Cegep Ste-Foy',
+    description: 'Le cegep le plus cool',
+    address: '2700, ch. Ste-Foy',
+    longitude: '46.78589761',
+    latitude: '-71.28661394',
+    cityId: 1},
 
-  {Id: 2,
-    Name: 'Château Frontenac',
-    Description: 'L\'icône de la ville de Québec',
-    Address: '2700, ch. Ste-Foy',
-    Longitude: '46.810756',
-    Latitude: '-71.2044479',
-    CityId: 1},
+  {id: 2,
+    name: 'Château Frontenac',
+    description: 'L\'icône de la ville de Québec',
+    address: '2700, ch. Ste-Foy',
+    longitude: '46.810756',
+    latitude: '-71.2044479',
+    cityId: 1},
 
-  {Id: 3,
-    Name: 'Île Madame',
-    Description: 'Le lieu où se déroule le meilleur roman \'Les grandes marées\'',
-    Address: '2700, ch. Ste-Foy',
-    Longitude: '46.971245',
-    Latitude: '-70.7868957',
-    CityId: 1},
+  {id: 3,
+    name: 'Île Madame',
+    description: 'Le lieu où se déroule le meilleur roman \'Les grandes marées\'',
+    address: '2700, ch. Ste-Foy',
+    longitude: '46.971245',
+    latitude: '-70.7868957',
+    cityId: 1},
 ];
 
   constructor(poiService: PoiService){
@@ -48,7 +48,7 @@ export class MapComponent implements OnInit{
     for (var i = 0, length = this.poiList.length; i < length; i++)
     {
       var poi = this.poiList[i];
-      this.positions.push([poi.Longitude, poi.Latitude])
+      this.positions.push([poi.longitude, poi.latitude])
     }
   }
 

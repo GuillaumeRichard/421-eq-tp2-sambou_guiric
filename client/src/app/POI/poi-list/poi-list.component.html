@@ -2,7 +2,7 @@
   <li *ngFor="let poi of poiList" on-mouseover="onSelect(poi)"
       [class.selected]="poi === selectedPoi"
       (click)="gotoDetail(poi)">
-    <span class="badge">{{poi.Id}}</span>
-    <span>{{poi.Name}}</span>
+    <span class="badge">{{poi.id}}</span>
+    <span>{{poi.name}}</span>
   </li>
 </ul>
