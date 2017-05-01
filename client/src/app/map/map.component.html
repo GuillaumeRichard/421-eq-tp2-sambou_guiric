@@ -1,10 +1,14 @@
 <ngui-map zoom="9" center="46.78589761, -71.28661394">
-  <custom-marker *ngFor="let pos of positions" [position]="pos">
-    <div class="custom-icon" on-mouseover="onSelect(pos); $event.stopPropagation()" (click)="onClick($event)" [class.selected]="pos === selectedPos">
-      <info-window id="iw">
+  <marker
+    (mouseover)="selectMarker($event)"
+    (mouseout)="deselectMarker($event)"
+    icon='http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    *ngFor="let pos of positions" [position]="pos">
+    <!--
+    <info-window id="iw">
         nom du point d'intérêt: [[nom]]
-      </info-window>
-    </div>
-  </custom-marker>
+    </info-window>
+    -->
+  </marker>
 </ngui-map>
 

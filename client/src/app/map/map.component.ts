@@ -10,9 +10,10 @@ export class MapComponent implements OnInit{
   DEFAULT_CITY = "Quebec";
 
   positions = [];
-  selectedPos: Position;
   poiService: PoiService;
   poiList: Poi[];
+  deselectedMarker = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+  selectedMarker = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
 
   constructor(poiService: PoiService){
     this.poiService = poiService;
@@ -34,35 +35,41 @@ export class MapComponent implements OnInit{
     }
   }
 
-  onClick(event): void {
+  selectMarker(event): void {
     let marker = event.target;
-    let clickedPoi = this.getPoiByPosition(marker);
-    this.showPoiDetail(marker, clickedPoi);
+    marker.setIcon(this.selectedMarker);
   }
 
-  getPoiByPosition(marker): Poi {
-    let markerLongitude = marker.getPosition().lat();
-    let markerLatitude = marker.getPosition().lng();
-    let poiToReturn: Poi;
-    for (let i = 0, length = this.poiList.length; i < length; i++)
-    {
-      let poi = this.poiList[i];
-      if(markerLongitude == poi.longitude && markerLatitude == poi.latitude) {
-        poiToReturn = poi;
-      }
-    }
-
-    return poiToReturn;
+  deselectMarker(event): void {
+    let marker = event.target;
+    marker.setIcon(this.deselectedMarker);
   }
 
-  showPoiDetail(marker, clickedPoi): void {
-    marker.nguiMapComponent.openInfoWindow('iw', marker, {
-      nom: clickedPoi.name
-    });
-  }
-
-  onSelect(pos): void {
-    this.selectedPos = pos;
-  }
+  // onClick(event): void {
+  //   let marker = event.target;
+  //   let clickedPoi = this.getPoiByPosition(marker);
+  //   this.showPoiDetail(marker, clickedPoi);
+  // }
+  //
+  // getPoiByPosition(marker): Poi {
+  //   let markerLongitude = marker.getPosition().lat();
+  //   let markerLatitude = marker.getPosition().lng();
+  //   let poiToReturn: Poi;
+  //   for (let i = 0, length = this.poiList.length; i < length; i++)
+  //   {
+  //     let poi = this.poiList[i];
+  //     if(markerLongitude == poi.longitude && markerLatitude == poi.latitude) {
+  //       poiToReturn = poi;
+  //     }
+  //   }
+  //
+  //   return poiToReturn;
+  // }
+  //
+  // showPoiDetail(marker, clickedPoi): void {
+  //   marker.nguiMapComponent.openInfoWindow('iw', marker, {
+  //     nom: clickedPoi.name
+  //   });
+  // }
 
 }

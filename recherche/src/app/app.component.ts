@@ -9,13 +9,15 @@ export class AppComponent {
   selectedPos: Position;
 
   onClick(event) {
-      //Je comprends pas
-    if (event instanceof MouseEvent)
-      {
-        return;
-      }
-      this.positions.push(event.latLng);
-      event.target.panTo(event.latLng);
+    let position = event.latLng;
+    let latitude = position.latitude;
+    let longitude = position.longitude;
+    let content = "longitude: " + longitude + ", latitude: " + latitude;
+    let infoWindow = new google.maps.InfoWindow({
+      content: content,
+      position: position
+    });
+    infoWindow.open();
   }
 
   onSelect(pos) {
