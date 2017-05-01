@@ -35,10 +35,10 @@ namespace CityPoiAPI.Controllers
             return DTOList;
         }
 
-        [HttpGet("{Name}", Name = "GetCity")]
-        public IActionResult GetCity(string Name, bool includePointsOfInterest)
+        [HttpGet("{id}", Name = "GetCity")]
+        public IActionResult GetCity(int id, bool includePointsOfInterest)
         {
-            var city = _repository.GetCity(Name, includePointsOfInterest);
+            var city = _repository.GetCity(id, includePointsOfInterest);
 
             if (city == null)
             {

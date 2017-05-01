@@ -11,8 +11,8 @@ export class PoiService {
 
   constructor(private http: Http) { }
 
-  getPoiList(name: string): Promise<Poi[]> {
-    const url = this.poiListUrl + name + '/pointsofinterest';
+  getPoiList(id: number): Promise<Poi[]> {
+    const url = this.poiListUrl + id + '/pointsofinterest';
     return this.http.get(url, this.headers)
       .toPromise()
       .then(response => response.json().poiList as Poi[])

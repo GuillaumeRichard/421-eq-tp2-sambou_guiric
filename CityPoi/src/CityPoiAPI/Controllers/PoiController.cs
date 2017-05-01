@@ -40,62 +40,61 @@ namespace CityPoiAPI.Controllers
             return NoContent();
         }
 
-        //POUR VOIR SI GET POI LIST SUR LE CLIENT MARCHE
-        //[HttpGet("{id}/pointsofinterest", Name = "GetPointsOfInterestForCity")]
-        //public IActionResult GetPointsOfInterestForCity(int id)
-        //{
-        //    if (!_repository.CityExists(id))
-        //    {
-        //        return new NotFoundResult();
-        //    }
-
-        //    var cityPoIs = _repository.GetPointsOfInterestForCity(id);
-
-        //    if (cityPoIs == null)
-        //    {
-        //        return new NotFoundResult(); 
-        //    }
-
-
-        //    return new ObjectResult(new PointsOfInterestDTO
-        //    {
-        //        POIList = cityPoIs.ToList()
-        //    });
-        //}
-
-        [HttpGet("{name}/pointsofinterest", Name = "GetPointsOfInterestForCity")]
-        public IActionResult GetPointsOfInterestForCity(string name)
+        [HttpGet("{id}/pointsofinterest", Name = "GetPointsOfInterestForCity")]
+        public IActionResult GetPointsOfInterestForCity(int id)
         {
-            var cities = _repository.GetCities();
-            //a encapsuler
-            City selectedCity = null;
-            foreach (var city in cities)
+            if (!_repository.CityExists(id))
             {
-                if (city.Name.Equals(name))
-                {
-                    selectedCity = city;
-                }
+                return new NotFoundResult();
             }
 
-            if (selectedCity == null)
-            {
-                return NotFound();
-            }
-
-            var cityPoIs = _repository.GetPointsOfInterestForCity(selectedCity.Id);
+            var cityPoIs = _repository.GetPointsOfInterestForCity(id);
 
             if (cityPoIs == null)
             {
                 return new NotFoundResult();
             }
 
-            var objectResult = new ObjectResult(new PointsOfInterestDTO
+
+            return new ObjectResult(new PointsOfInterestDTO
             {
                 POIList = cityPoIs.ToList()
             });
-
-            return objectResult;
         }
+
+        //[HttpGet("{name}/pointsofinterest", Name = "GetPointsOfInterestForCity")]
+        //public IActionResult GetPointsOfInterestForCity(string name)
+        //{
+        //    var cities = _repository.GetCities();
+        //    //a encapsuler
+        //    City selectedCity = null;
+        //    foreach (var city in cities)
+        //    {
+        //        if (city.Name.Equals(name))
+        //        {
+        //            selectedCity = city;
+        //        }
+        //    }
+
+        //    if (selectedCity == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var cityPoIs = _repository.GetPointsOfInterestForCity(selectedCity.Id);
+
+        //    if (cityPoIs == null)
+        //    {
+        //        return new NotFoundResult();
+        //    }
+
+        //    var objectResult = new ObjectResult(new PointsOfInterestDTO
+        //    {
+        //        POIList = cityPoIs.ToList()
+        //    });
+
+        //    return objectResult;
+        //}
 
         [HttpGet("{cityId}/pointsofinterest/{poiId}", Name = "GetPointOfInterest")]
         public IActionResult GetPointOfInterest(int cityId, int poiId)

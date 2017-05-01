@@ -7,7 +7,8 @@ import {Poi} from "../POI/shared/poi.model";
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit{
-  DEFAULT_CITY = "Quebec";
+  //Québec
+  DEFAULT_CITY_ID = 1;
 
   positions = [];
   poiService: PoiService;
@@ -20,11 +21,11 @@ export class MapComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getPoiList(this.DEFAULT_CITY).then(() => this.getPoiPositions());
+    this.getPoiList(this.DEFAULT_CITY_ID).then(() => this.getPoiPositions());
   }
 
-  getPoiList(name: string): Promise<Poi[]> {
-    return this.poiService.getPoiList(name).then(poiList => this.poiList = poiList);
+  getPoiList(id: number): Promise<Poi[]> {
+    return this.poiService.getPoiList(id).then(poiList => this.poiList = poiList);
   }
 
   getPoiPositions(): void {

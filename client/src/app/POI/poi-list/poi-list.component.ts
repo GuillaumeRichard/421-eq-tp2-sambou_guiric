@@ -11,7 +11,7 @@ import { Poi } from '../shared/poi.model';
 })
 
 export class PoiListComponent implements OnInit {
-  DEFAULT_CITY = "Quebec";
+  DEFAULT_CITY_ID = 1;
 
   poiList: Poi[];
   selectedPoi: Poi;
@@ -21,12 +21,12 @@ export class PoiListComponent implements OnInit {
     private poiService: PoiService
   ) { }
 
-  getPoiList(name: string): void {
-    this.poiService.getPoiList(name).then(poiList => this.poiList = poiList);
+  getPoiList(id: number): void {
+    this.poiService.getPoiList(id).then(poiList => this.poiList = poiList);
   }
 
   ngOnInit(): void {
-    this.getPoiList(this.DEFAULT_CITY);
+    this.getPoiList(this.DEFAULT_CITY_ID);
   }
 
   onSelect(poi: Poi): void {
