@@ -45,31 +45,39 @@ export class MapComponent implements OnInit{
     marker.setIcon(this.deselectedMarker);
   }
 
-  // onClick(event): void {
-  //   let marker = event.target;
-  //   let clickedPoi = this.getPoiByPosition(marker);
-  //   this.showPoiDetail(marker, clickedPoi);
-  // }
-  //
-  // getPoiByPosition(marker): Poi {
-  //   let markerLongitude = marker.getPosition().lat();
-  //   let markerLatitude = marker.getPosition().lng();
-  //   let poiToReturn: Poi;
-  //   for (let i = 0, length = this.poiList.length; i < length; i++)
-  //   {
-  //     let poi = this.poiList[i];
-  //     if(markerLongitude == poi.longitude && markerLatitude == poi.latitude) {
-  //       poiToReturn = poi;
-  //     }
-  //   }
-  //
-  //   return poiToReturn;
-  // }
-  //
-  // showPoiDetail(marker, clickedPoi): void {
-  //   marker.nguiMapComponent.openInfoWindow('iw', marker, {
-  //     nom: clickedPoi.name
-  //   });
-  // }
+  showPoiDetail(event): void {
+    let marker = event.target;
+    let clickedPoi = this.getPoiByPosition(marker);
+    marker.nguiMapComponent.openInfoWindow('iw', marker, {
+      nom: clickedPoi.name
+    });
+  }
+
+  getPoiByPosition(marker): Poi {
+    let markerLongitude = MapComponent.roundPosition(marker.getPosition().lat());
+    let markerLatitude = MapComponent.roundPosition(marker.getPosition().lng());
+    let poiToReturn: Poi;
+    for (let i = 0, length = this.poiList.length; i < length; i++)
+    {
+      let poi = this.poiList[i];
+      let poiLongitude = MapComponent.roundPosition(Number(poi.longitude));
+      let poiLatitude = MapComponent.roundPosition(Number(poi.latitude));
+      if(markerLongitude == poiLongitude && markerLatitude == poiLatitude) {
+        poiToReturn = poi;
+      }
+    }
+
+    return poiToReturn;
+  }
+
+  //Cette méthode arrondit la position à 6 chiffres après la virgule
+  //Pour que la comparaison entre la position du marqueur et du poi se fasse.
+  static roundPosition(position: number): number {
+    // Math.round n'est pas capable n'arrondit qu'à des nombres entiers.
+    // Donc, on multiplie la position par 1000000 pour arrondir les 6 chiffres après la virgule,
+    // puis on redivise par 1000000.
+    return Math.round(position * 1000000) / 1000000;
+  }
+
 
 }
