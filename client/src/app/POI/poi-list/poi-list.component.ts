@@ -16,6 +16,7 @@ export class PoiListComponent implements OnInit {
   poiList: Poi[];
   selectedPoi: Poi;
 
+
   constructor(
     // private router: Router,
     private poiService: PoiService
