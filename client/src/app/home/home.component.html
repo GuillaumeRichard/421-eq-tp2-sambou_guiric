@@ -6,10 +6,10 @@
   </div>
   <div class="row">
     <div class="col-sm-3">
-      <poi-list-component></poi-list-component>
+      <poi-list-component (poiToOutput)="handlePoiUpdated($event)"></poi-list-component>
     </div>
     <div class="col-sm-9">
-      <map-component></map-component>
+      <map-component [selectedPoi]="selectedPoi"></map-component>
     </div>
   </div>
 </div>

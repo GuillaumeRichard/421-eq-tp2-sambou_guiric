@@ -2,12 +2,16 @@
   <marker
     (mouseover)="selectMarker($event)"
     (mouseout)="deselectMarker($event)"
-    (click)="showPoiDetail($event)"
+    (click)="showInfoWindowFromMarker($event)"
     icon='http://maps.google.com/mapfiles/ms/icons/red-dot.png'
     *ngFor="let pos of positions" [position]="pos">
     <info-window id="iw">
         nom du point d'intérêt: [[nom]]
     </info-window>
   </marker>
+  <marker *ngIf="selectedPoi"
+          [position]="[selectedPoi.longitude, selectedPoi.latitude]"
+          icon='http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+  ></marker>
 </ngui-map>
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import {Poi} from "../POI/shared/poi.model";
 
 @Component({
   selector: 'home-component',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  selectedPoi: Poi;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  handlePoiUpdated(poi: Poi) {
+    this.selectedPoi = poi;
   }
 
 }

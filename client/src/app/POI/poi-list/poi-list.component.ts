@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { PoiService } from '../shared/poi-list-service/poi-list.service';
 import { Router } from '@angular/router';
@@ -15,6 +15,8 @@ export class PoiListComponent implements OnInit {
 
   poiList: Poi[];
   selectedPoi: Poi;
+  @Output()
+  poiToOutput: EventEmitter<Poi> = new EventEmitter<Poi>();
 
 
   constructor(
@@ -31,7 +33,19 @@ export class PoiListComponent implements OnInit {
   }
 
   onSelect(poi: Poi): void {
+    this.selectPoiInList(poi);
+    this.selectPoiMarker(poi);
+  }
+
+  selectPoiInList(poi: Poi): void {
     this.selectedPoi = poi;
+  }
+
+    this.poiToOutput.emit(poi);
+  }
+
+  deselectPoiMarker(): void {
+    this.poiToOutput.emit(null);
   }
 
   gotoDetail(): void {

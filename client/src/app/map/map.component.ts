@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {PoiService} from "../POI/shared/poi-list-service/poi-list.service";
 import {Poi} from "../POI/shared/poi.model";
 @Component({
@@ -15,6 +15,9 @@ export class MapComponent implements OnInit{
   poiList: Poi[];
   deselectedMarker = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
   selectedMarker = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+
+  @Input()
+  selectedPoi: Poi;
 
   constructor(poiService: PoiService){
     this.poiService = poiService;
@@ -46,8 +49,12 @@ export class MapComponent implements OnInit{
     marker.setIcon(this.deselectedMarker);
   }
 
-  showPoiDetail(event): void {
+  showInfoWindowFromMarker(event): void {
     let marker = event.target;
+    this.showInfoWindow(marker);
+  }
+
+  showInfoWindow(marker): void {
     let clickedPoi = this.getPoiByPosition(marker);
     marker.nguiMapComponent.openInfoWindow('iw', marker, {
       nom: clickedPoi.name
@@ -74,7 +81,7 @@ export class MapComponent implements OnInit{
   //Cette méthode arrondit la position à 6 chiffres après la virgule
   //Pour que la comparaison entre la position du marqueur et du poi se fasse.
   static roundPosition(position: number): number {
-    // Math.round n'est pas capable n'arrondit qu'à des nombres entiers.
+    // Math.round n'arrondit qu'à des nombres entiers.
     // Donc, on multiplie la position par 1000000 pour arrondir les 6 chiffres après la virgule,
     // puis on redivise par 1000000.
     return Math.round(position * 1000000) / 1000000;

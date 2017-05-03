@@ -1,5 +1,7 @@
 <ul class="poiList">
-  <li *ngFor="let poi of poiList" on-mouseover="onSelect(poi)"
+  <li *ngFor="let poi of poiList"
+      on-mouseover="onSelect(poi)"
+      on-mouseout="deselectPoiMarker()"
       [class.selected]="poi === selectedPoi"
       (click)="gotoDetail(poi)">
     <span class="badge">{{poi.id}}</span>
