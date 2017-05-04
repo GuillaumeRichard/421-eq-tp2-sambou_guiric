@@ -2,7 +2,7 @@
   <marker
     (mouseover)="selectMarker($event)"
     (mouseout)="deselectMarker($event)"
-    (click)="showInfoWindowFromMarker($event)"
+    (click)="showInfoWindow($event)"
     icon='http://maps.google.com/mapfiles/ms/icons/red-dot.png'
     *ngFor="let pos of positions" [position]="pos">
     <info-window id="iw">

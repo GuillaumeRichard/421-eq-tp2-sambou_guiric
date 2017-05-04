@@ -49,12 +49,8 @@ export class MapComponent implements OnInit{
     marker.setIcon(this.deselectedMarker);
   }
 
-  showInfoWindowFromMarker(event): void {
+  showInfoWindow(event): void {
     let marker = event.target;
-    this.showInfoWindow(marker);
-  }
-
-  showInfoWindow(marker): void {
     let clickedPoi = this.getPoiByPosition(marker);
     marker.nguiMapComponent.openInfoWindow('iw', marker, {
       nom: clickedPoi.name

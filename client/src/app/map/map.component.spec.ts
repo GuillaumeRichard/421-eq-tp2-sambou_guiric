@@ -48,5 +48,7 @@ describe('MapComponent', () => {
 
       expect(mapComponent.poiList).toEqual(poiList);
     }));
-  })
+  });
+
+
 });

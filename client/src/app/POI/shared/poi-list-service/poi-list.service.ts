@@ -24,11 +24,11 @@ export class PoiService {
     return Promise.reject(error.message || error);
   }
 
-  getPoi(id: number): Promise<Poi> {
-    const url = `${this.poiListUrl}/${id}`;
+  getPoi(cityId: number, poiId: number): Promise<Poi> {
+    const url = `${this.poiListUrl}${cityId}/pointsofinterest/${poiId}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json().data as Poi)
+      .then(response => response.json() as Poi)
       .catch(this.handleError);
   }
 }

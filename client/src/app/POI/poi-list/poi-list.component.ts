@@ -20,7 +20,7 @@ export class PoiListComponent implements OnInit {
 
 
   constructor(
-    // private router: Router,
+    private router: Router,
     private poiService: PoiService
   ) { }
 
@@ -41,6 +41,7 @@ export class PoiListComponent implements OnInit {
     this.selectedPoi = poi;
   }
 
+  selectPoiMarker(poi: Poi): void {
     this.poiToOutput.emit(poi);
   }
 
@@ -48,8 +49,8 @@ export class PoiListComponent implements OnInit {
     this.poiToOutput.emit(null);
   }
 
-  gotoDetail(): void {
-    // this.router.navigate(['/detail', this.selectedPoi.Id]);
+  gotoDetail(poi: Poi): void {
+    this.router.navigate(['/poi-detail', poi.cityId, poi.id]);
   }
 
 }

@@ -12,6 +12,7 @@ import {CitySearchService} from './City/shared/city-service/city-search.service'
 import {PoiService} from './POI/shared/poi-list-service/poi-list.service';
 import {AppRoutingModule} from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { PoiDetailComponent } from './POI/poi-detail/poi-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomeComponent } from './home/home.component';
     CitySearchComponent,
     MapComponent,
     PoiListComponent,
-    HomeComponent
+    HomeComponent,
+    PoiDetailComponent
   ],
   imports: [
     BrowserModule,
