@@ -1,6 +1,6 @@
 ﻿namespace CityPoiAPI.Controllers
 {
-    public class PostPOIDTO
+    public class PostPoidto
     {
         public string Name { get; set; }
 

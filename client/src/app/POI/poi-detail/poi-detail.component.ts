@@ -23,6 +23,17 @@ export class PoiDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params
       .switchMap((params: Params) => this.poiService.getPoi(+params['city-id'], +params['poi-id']))
-      .subscribe(poi => this.poi = poi);
-}
+      .subscribe(poi => {
+        this.poi = poi;
+
+        console.log(this.poi);
+
+        console.log("imageUrl = " + this.poi.imageUrl);
+      });
+
+  }
+
+  goBack() {
+    this.location.back();
+  }
 }

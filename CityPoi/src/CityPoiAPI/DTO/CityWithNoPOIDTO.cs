@@ -6,7 +6,7 @@ using CityPoiAPI.Entities;
 
 namespace CityPoiAPI.DTO
 {
-    public class CityWithNoPOIDTO
+    public class CityWithNoPoidto
     {
         public int CityId { get; set; }
         public string Name { get; set; }

@@ -4,37 +4,12 @@ using CityPoiAPI.Entities;
 
 namespace CityPoiAPI.DTO
 {
-    public class DTOMapper
+    public class DtoMapper
     {
-        public PointOfInterest PostPoiDtoToPoi(PostPOIDTO poiDTO)
-        {
-            return new PointOfInterest()
-            {
-                Address = poiDTO.Address,
-                CityId = poiDTO.CityId,
-                Description = poiDTO.Description,
-                Latitude = poiDTO.Latitude,
-                Longitude = poiDTO.Longitude,
-                Name = poiDTO.Name
-            };
-        }
 
-        public PostPOIDTO PoiToPostPoiDto(PointOfInterest poi)
+        public PointOfInterestDto PoiToPoiDto(PointOfInterest poi)
         {
-            return new PostPOIDTO()
-            {
-                Address = poi.Address,
-                CityId = poi.CityId,
-                Description = poi.Description,
-                Latitude = poi.Latitude,
-                Longitude = poi.Longitude,
-                Name = poi.Name
-            };
-        }
-
-        public PointOfInterestDTO PoiToPoiDto(PointOfInterest poi)
-        {
-            return new PointOfInterestDTO()
+            return new PointOfInterestDto()
             {
                 Id = poi.Id,
                 Address = poi.Address,
@@ -42,21 +17,23 @@ namespace CityPoiAPI.DTO
                 Description = poi.Description,
                 Latitude = poi.Latitude,
                 Longitude = poi.Longitude,
-                Name = poi.Name
+                Name = poi.Name,
+                ImageUrl = poi.ImageUrl
             };
         }
 
-        public PointOfInterest PoiDtoToPoi(PointOfInterestDTO poiDTO)
+        public PointOfInterest PoiDtoToPoi(PointOfInterestDto poiDto)
         {
             return new PointOfInterest()
             {
-                Id = poiDTO.Id,
-                Address = poiDTO.Address,
-                CityId = poiDTO.CityId,
-                Description = poiDTO.Description,
-                Latitude = poiDTO.Latitude,
-                Longitude = poiDTO.Longitude,
-                Name = poiDTO.Name
+                Id = poiDto.Id,
+                Address = poiDto.Address,
+                CityId = poiDto.CityId,
+                Description = poiDto.Description,
+                Latitude = poiDto.Latitude,
+                Longitude = poiDto.Longitude,
+                Name = poiDto.Name,
+                ImageUrl = poiDto.ImageUrl
             };
         }
     }

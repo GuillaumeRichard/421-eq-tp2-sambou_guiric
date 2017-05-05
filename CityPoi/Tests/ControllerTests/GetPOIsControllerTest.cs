@@ -17,9 +17,9 @@ namespace Tests.ControllerTests
             FakeCityRepository.GetPointsOfInterestForCity(city.Id).Returns(city.PointsOfInterest);
             FakeCityRepository.CityExists(city.Id).Returns(true);
 
-            var poiDto = new PointsOfInterestDTO
+            var poiDto = new PointsOfInterestDto
             {
-                POIList = city.PointsOfInterest
+                PoiList = city.PointsOfInterest
             };
 
             //Action

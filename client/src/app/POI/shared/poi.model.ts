@@ -6,4 +6,5 @@ export class Poi {
   longitude: string;
   latitude: string;
   cityId: number;
+  imageUrl: string;
 }

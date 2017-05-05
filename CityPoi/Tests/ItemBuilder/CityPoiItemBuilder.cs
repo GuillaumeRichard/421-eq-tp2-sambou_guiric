@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bogus;
-using CityPoiAPI.Controllers;
 using CityPoiAPI.Entities;
 
 namespace Tests.ItemBuilder
@@ -11,7 +10,6 @@ namespace Tests.ItemBuilder
 
         private readonly Faker<City> _cityFaker;
         private readonly Faker<PointOfInterest> _poiFaker;
-        private readonly Faker<PostPOIDTO> _postPoidtoFaker;
 
         public CityPoiItemBuilder()
         {
@@ -27,15 +25,8 @@ namespace Tests.ItemBuilder
                 .RuleFor(o => o.Id, f => f.UniqueIndex)
                 .RuleFor(o => o.Name, f => f.Lorem.Word())
                 .RuleFor(o => o.Longitude, f => f.Address.Longitude().ToString())
-                .RuleFor(o => o.Latitude, f => f.Address.Latitude().ToString());
-
-            _postPoidtoFaker = new Faker<PostPOIDTO>(locale: "fr")
-                .RuleFor(o => o.Address, f => f.Address.StreetAddress())
-                .RuleFor(o => o.Description, f => f.Lorem.Sentence())
-                .RuleFor(o => o.Name, f => f.Lorem.Word())
-                .RuleFor(o => o.Longitude, f => f.Address.Longitude().ToString())
-                .RuleFor(o => o.CityId, f => f.UniqueIndex)
-                .RuleFor(o => o.Latitude, f => f.Address.Latitude().ToString());
+                .RuleFor(o => o.Latitude, f => f.Address.Latitude().ToString())
+                .RuleFor(o => o.ImageUrl, f => f.Internet.Url());
         }
 
         public City GenerateCity()
@@ -71,12 +62,5 @@ namespace Tests.ItemBuilder
         {
             return _poiFaker.Generate();
         }
-
-        public PostPOIDTO GeneratePostPoidto()
-        {
-            return _postPoidtoFaker.Generate();
-        }
-
     }
 }
-

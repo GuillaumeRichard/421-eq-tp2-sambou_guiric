@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CityPoiAPI.DTO
+﻿namespace CityPoiAPI.DTO
 {
-    public class PointOfInterestDTO
+    public class PointOfInterestDto
     {
         //YM: devrait contenir des validations + validation testées
         public int Id {get; set;}
@@ -15,5 +10,6 @@ namespace CityPoiAPI.DTO
         public int CityId { get; set; }
         public string Longitude { get; set; } 
         public string Latitude { get; set;}
+        public string ImageUrl { get; set; }
     }
 }

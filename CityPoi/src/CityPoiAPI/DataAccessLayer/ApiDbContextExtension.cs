@@ -20,6 +20,7 @@ namespace CityPoiAPI.DataAccessLayer
                 Address = "2700, ch. Ste-Foy",
                 Longitude = "46.78589761",
                 Latitude = "-71.28661394",
+                ImageUrl = "http://www.cegep-ste-foy.qc.ca/typo3temp/_processed_/csm_ban_a_propos_01_9f03514825.jpg"
             };
 
             var poi2 = new PointOfInterest()
@@ -29,6 +30,7 @@ namespace CityPoiAPI.DataAccessLayer
                 Address = "1, rue des Carrières",
                 Longitude = "46.810756",
                 Latitude = "-71.2044479",
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/d/d4/Chateau_Frontenac_Quebec_City.jpg"
             };
 
             var poi3 = new PointOfInterest()
@@ -38,6 +40,7 @@ namespace CityPoiAPI.DataAccessLayer
                 Address = "Avenue Wilfrid-Laurier",
                 Longitude = "46.8015014",
                 Latitude = "-71.2173963",
+                ImageUrl = "http://www.ameriquefrancaise.org/media-3007/plaine_abraham_vue_aerienne.jpg"
             };
 
             apiDbContext.Cities.Add(new City()

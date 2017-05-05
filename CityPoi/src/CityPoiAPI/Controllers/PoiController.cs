@@ -10,12 +10,12 @@ namespace CityPoiAPI.Controllers
     public class PoiController:Controller
     {
         private readonly ICityRepository _repository;
-        private readonly DTOMapper _dtoMapper;
+        private readonly DtoMapper _dtoMapper;
 
         public PoiController(ICityRepository repository)
         {
             _repository = repository;
-            _dtoMapper = new DTOMapper();
+            _dtoMapper = new DtoMapper();
         }
 
         [HttpDelete("{cityId}/pointsofinterest/{poiId}", Name = "DeletePointOfInterest")]
@@ -56,9 +56,9 @@ namespace CityPoiAPI.Controllers
             }
 
 
-            return new ObjectResult(new PointsOfInterestDTO
+            return new ObjectResult(new PointsOfInterestDto
             {
-                POIList = cityPoIs.ToList()
+                PoiList = cityPoIs.ToList()
             });
         }
 
@@ -111,43 +111,12 @@ namespace CityPoiAPI.Controllers
                 return new NotFoundResult();
             }
 
-            return new ObjectResult(new PointOfInterestDTO   
-            {
-                Id = poi.Id,
-                Name = poi.Name,
-                Address = poi.Address,
-                Description = poi.Description,
-                CityId = poi.CityId,
-                Longitude = poi.Longitude,
-                Latitude = poi.Latitude
-            });
-        }
-
-        [HttpPost]
-        [Route("{cityId}/pointsofInterest", Name = "AddPointOfInterest")]
-        public IActionResult AddPointOfInterestToCity(int cityId, [FromBody] PostPOIDTO poiDto)
-        {
-            if (!_repository.CityExists(cityId))
-            {
-                return new NotFoundResult();
-            }
-            if (poiDto == null)
-            {
-                return BadRequest();
-            }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var poi = _dtoMapper.PostPoiDtoToPoi(poiDto);
-            _repository.AddPointOfInterestForCity(cityId, poi);
-            return CreatedAtRoute("AddPointOfInterest", new { id = poi.Id }, poi);
+            return new ObjectResult(_dtoMapper.PoiToPoiDto(poi));
         }
 
         [HttpPut]
         [Route("{cityId}/pointsofInterest/{poiId}", Name = "PutPointOfInterest")]
-        public IActionResult UpdatePointOfInterest(int poiId, [FromBody] PointOfInterestDTO poiDto)
+        public IActionResult UpdatePointOfInterest(int poiId, [FromBody] PointOfInterestDto poiDto)
         {
             if (poiDto == null || poiDto.Id != poiId)
             {

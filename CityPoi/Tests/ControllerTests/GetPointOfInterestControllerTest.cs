@@ -17,7 +17,7 @@ namespace Tests.ControllerTests
         {
             var city = CityPoiItemBuilder.GenerateCity();
             var poi = city.PointsOfInterest.First();
-            var poiDto = new PointOfInterestDTO
+            var poiDto = new PointOfInterestDto
             {
                 CityId = poi.CityId,
                 Name = poi.Name,

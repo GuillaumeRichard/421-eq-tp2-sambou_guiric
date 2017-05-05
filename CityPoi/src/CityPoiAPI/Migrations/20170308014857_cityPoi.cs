@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CityPoiAPI.Migrations
 {
-    public partial class cityPoi : Migration
+    public partial class CityPoi : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

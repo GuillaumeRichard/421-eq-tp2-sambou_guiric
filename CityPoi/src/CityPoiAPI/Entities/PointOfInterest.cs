@@ -33,5 +33,8 @@ namespace CityPoiAPI.Entities
         [ForeignKey("CityId")]
         [Required]
         public int CityId { get; set; }
+
+        [Required]
+        public string ImageUrl { get; set; }
     }
 }

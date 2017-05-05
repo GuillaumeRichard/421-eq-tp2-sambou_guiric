@@ -13,7 +13,7 @@ namespace Tests.ControllerTests
         protected CityPoiController CityPoiController;
         protected PoiController PoiController;
         protected CityPoiItemBuilder CityPoiItemBuilder;
-        protected DTOMapper DtoMapper;
+        protected DtoMapper DtoMapper;
 
         public BaseCityControllerTest()
         {
@@ -21,7 +21,7 @@ namespace Tests.ControllerTests
             CityPoiController = new CityPoiController(FakeCityRepository);
             PoiController = new PoiController(FakeCityRepository);
             CityPoiItemBuilder = new CityPoiItemBuilder();
-            DtoMapper = new DTOMapper();
+            DtoMapper = new DtoMapper();
         }
     }
 }

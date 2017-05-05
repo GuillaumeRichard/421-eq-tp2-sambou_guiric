@@ -4,8 +4,8 @@ using CityPoiAPI.Entities;
 
 namespace CityPoiAPI.DTO
 {
-    public class PointsOfInterestDTO
+    public class PointsOfInterestDto
     {
-        public List<PointOfInterest> POIList { get; set; }
+        public List<PointOfInterest> PoiList { get; set; }
     }
 }

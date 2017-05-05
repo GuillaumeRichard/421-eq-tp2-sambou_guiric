@@ -14,12 +14,12 @@ namespace Tests.ControllerTests
         public void GetCity_ItemExistAndPOIisRequested_ReturnCityWithPOIDTO()
         {
             var city = CityPoiItemBuilder.GenerateCity();
-            var cityDto = new CityWithPOIDTO 
+            var cityDto = new CityWithPoidto 
             {
                 CityId = city.Id,
                 Name = city.Name,
                 Country = city.Country,
-                POIList = city.PointsOfInterest,
+                PoiList = city.PointsOfInterest,
                 Population = city.Population
             };
             FakeCityRepository.GetCity(city.Id, true).Returns(city);
@@ -35,7 +35,7 @@ namespace Tests.ControllerTests
         public void GetCity_ItemExistAndPOIisNotRequested_ReturnCityWithPOIDTO()
         {
             var city = CityPoiItemBuilder.GenerateCity();
-            var cityDto = new CityWithNoPOIDTO
+            var cityDto = new CityWithNoPoidto
             {
                 CityId = city.Id,
                 Name = city.Name,
@@ -64,7 +64,7 @@ namespace Tests.ControllerTests
         public void GetCity_ItemExistAndPOIisNotRequested_ReturnCityWithNoPOIDTO()
         {
             var city = CityPoiItemBuilder.GenerateCity();
-            var cityDto = new CityWithNoPOIDTO
+            var cityDto = new CityWithNoPoidto
             {
                 CityId = city.Id,
                 Name = city.Name,

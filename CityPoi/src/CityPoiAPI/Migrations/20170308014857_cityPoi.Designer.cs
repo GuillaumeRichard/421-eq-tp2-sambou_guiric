@@ -9,7 +9,7 @@ namespace CityPoiAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
     [Migration("20170308014857_cityPoi")]
-    partial class cityPoi
+    partial class CityPoi
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
