@@ -12,7 +12,7 @@ import 'rxjs/add/operator/switchMap';
 })
 export class PoiDetailComponent implements OnInit {
 
-  poiabc: Poi;
+  poi: Poi;
 
   constructor(
     private poiService: PoiService,
@@ -23,25 +23,6 @@ export class PoiDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params
       .switchMap((params: Params) => this.poiService.getPoi(+params['city-id'], +params['poi-id']))
-      .subscribe(poi => {
-        this.poiabc = poi;
-        console.log("*****************************************a");
-        console.log(poi);
-        console.log("*****************************************b");
-        console.log(this.poiabc);
-
-      });
-  //
-  //   this.poiabc = {
-  //     id: 1,
-  //   name: "a",
-  //   description: "a",
-  //   address: "a",
-  //   longitude: "a",
-  //   latitude: "a",
-  //   cityId: 1
-  // };
-
-    alert(this.poiabc);
+      .subscribe(poi => this.poi = poi);
 }
 }
