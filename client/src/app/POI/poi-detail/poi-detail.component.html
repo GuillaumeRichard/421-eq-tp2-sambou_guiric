@@ -1,16 +1,21 @@
+<!--
+Le '?' après poi signifie que si la page charge avant la réponse du serveur
+(donc aucune réponse), on ne fait pas l'opération.
+-->
+
 <p>
-  nom: {{poi.name}}
+  nom: {{poi?.name}}
 </p>
 
 <p>
-  adresse: {{poi.address}}
+  adresse: {{poi?.address}}
 </p>
 
 <p>
-  description: {{poi.description}}
+  description: {{poi?.description}}
 </p>
 
-<img src="{{poi.imageUrl}}" />
+<img src="{{poi?.imageUrl}}" />
 
 <br>
 

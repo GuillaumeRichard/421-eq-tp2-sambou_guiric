@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Poi} from "../shared/poi.model";
 import {PoiService} from "../shared/poi-list-service/poi-list.service";
-import { ActivatedRoute, Params }   from '@angular/router';
+import {ActivatedRoute, Params, Router}   from '@angular/router';
 import { Location }                 from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
@@ -17,6 +17,7 @@ export class PoiDetailComponent implements OnInit {
   constructor(
     private poiService: PoiService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location
   ) {}
 
@@ -25,10 +26,6 @@ export class PoiDetailComponent implements OnInit {
       .switchMap((params: Params) => this.poiService.getPoi(+params['city-id'], +params['poi-id']))
       .subscribe(poi => {
         this.poi = poi;
-
-        console.log(this.poi);
-
-        console.log("imageUrl = " + this.poi.imageUrl);
       });
 
   }
