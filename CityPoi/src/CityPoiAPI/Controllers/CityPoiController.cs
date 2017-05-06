@@ -35,7 +35,7 @@ namespace CityPoiAPI.Controllers
             return dtoList;
         }
 
-        [HttpGet("{id}", Name = "GetCity")]
+        [HttpGet("{id}", Name = "GetCityById")]
         public IActionResult GetCity(int id, bool includePointsOfInterest)
         {
             var city = _repository.GetCity(id, includePointsOfInterest);
@@ -59,6 +59,39 @@ namespace CityPoiAPI.Controllers
             else
             {
                 return new ObjectResult(new CityWithNoPoidto
+                {
+                    CityId = city.Id,
+                    Name = city.Name,
+                    Country = city.Country,
+                    Population = city.Population
+                });
+            }
+        }
+
+        [HttpGet("{Name}", Name = "GetCityByName")]
+        public IActionResult GetCity(string Name, bool includePointsOfInterest)
+        {
+            var city = _repository.GetCity(Name, includePointsOfInterest);
+
+            if (city == null)
+            {
+                return new NotFoundResult();
+            }
+
+            if (includePointsOfInterest)
+            {
+                return new ObjectResult(new CityWithPOIDTO
+                {
+                    CityId = city.Id,
+                    Name = city.Name,
+                    Country = city.Country,
+                    POIList = city.PointsOfInterest,
+                    Population = city.Population
+                });
+            }
+            else
+            {
+                return new ObjectResult(new CityWithNoPOIDTO
                 {
                     CityId = city.Id,
                     Name = city.Name,
