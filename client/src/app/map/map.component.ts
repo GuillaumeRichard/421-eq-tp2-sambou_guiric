@@ -53,7 +53,8 @@ export class MapComponent implements OnInit{
     let marker = event.target;
     let clickedPoi = this.getPoiByPosition(marker);
     marker.nguiMapComponent.openInfoWindow('iw', marker, {
-      nom: clickedPoi.name
+      nom: clickedPoi.name,
+      imageUrl: clickedPoi.imageUrl
     });
   }
 
