@@ -68,36 +68,17 @@ namespace CityPoiAPI.Controllers
             }
         }
 
-        [HttpGet("{Name}", Name = "GetCityByName")]
-        public IActionResult GetCity(string Name, bool includePointsOfInterest)
+        [HttpGet("{Name}", Name = "SearchCitiesByName")]
+        public IActionResult SearchCitiesByName(string Name)
         {
-            var city = _repository.GetCity(Name, includePointsOfInterest);
+            var cities = _repository.SearchCitiesByName(Name);
 
-            if (city == null)
+            if (cities == null)
             {
                 return new NotFoundResult();
             }
 
-            if (includePointsOfInterest)
-            {
-                return new ObjectResult(new CityWithPoidto
-                {
-                    CityId = city.Id,
-                    Name = city.Name,
-                    Country = city.Country,
-                    PoiList = city.PointsOfInterest,
-                    Population = city.Population
-                });
-            }
-            else
-            {
-                return new ObjectResult(new CityWithNoPoidto
-                {
-                    CityId = city.Id,
-                    Name = city.Name,
-                    Country = city.Country,
-                    Population = city.Population
-                });
+            return new ObjectResult(cities);
             }
         }
     }

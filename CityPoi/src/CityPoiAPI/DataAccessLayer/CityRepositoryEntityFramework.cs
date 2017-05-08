@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CityPoiAPI.Entities;
 using CityPoiAPI.Services;
@@ -76,6 +77,11 @@ namespace CityPoiAPI.DataAccessLayer
             originalPoi.Longitude = newPointOfInterest.Longitude;
             originalPoi.Name = newPointOfInterest.Name;
             return originalPoi;
+        }
+
+        public IEnumerable<City> SearchCitiesByName(string name)
+        {
+            return _context.Cities.Where(x => x.Name.Contains(name));
         }
     }
 }
