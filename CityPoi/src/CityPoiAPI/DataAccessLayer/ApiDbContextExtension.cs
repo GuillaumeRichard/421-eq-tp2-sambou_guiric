@@ -30,7 +30,7 @@ namespace CityPoiAPI.DataAccessLayer
                 Address = "1, rue des Carrières",
                 Longitude = "46.810756",
                 Latitude = "-71.2044479",
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Ch%C3%A2teau_Frontenac2010.jpg/260px-Ch%C3%A2teau_Frontenac2010.jpg"
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/d/d4/Chateau_Frontenac_Quebec_City.jpg"
             };
 
             var poi3 = new PointOfInterest()
