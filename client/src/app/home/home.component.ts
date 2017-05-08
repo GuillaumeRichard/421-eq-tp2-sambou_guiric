@@ -6,14 +6,11 @@ import {Poi} from "../POI/shared/poi.model";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   selectedPoi: Poi;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   handlePoiUpdated(poi: Poi) {
     this.selectedPoi = poi;

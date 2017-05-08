@@ -80,18 +80,18 @@ namespace CityPoiAPI.Controllers
 
             if (includePointsOfInterest)
             {
-                return new ObjectResult(new CityWithPOIDTO
+                return new ObjectResult(new CityWithPoidto
                 {
                     CityId = city.Id,
                     Name = city.Name,
                     Country = city.Country,
-                    POIList = city.PointsOfInterest,
+                    PoiList = city.PointsOfInterest,
                     Population = city.Population
                 });
             }
             else
             {
-                return new ObjectResult(new CityWithNoPOIDTO
+                return new ObjectResult(new CityWithNoPoidto
                 {
                     CityId = city.Id,
                     Name = city.Name,
