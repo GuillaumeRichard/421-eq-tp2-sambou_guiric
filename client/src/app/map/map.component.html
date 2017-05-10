@@ -4,9 +4,11 @@
     (mouseout)="deselectMarker($event)"
     (click)="showInfoWindow($event)"
     icon='http://maps.google.com/mapfiles/ms/icons/red-dot.png'
-    *ngFor="let pos of positions" [position]="pos">
-    <info-window id="iw">
+    *ngFor="let poi of poiList" [position]="[poi.longitude, poi.latitude]">
+    <info-window id="iw"">
         nom du point d'intérêt: [[nom]]
+        <br> <br>
+        <img src='[[imageUrl]]' width="25%" height="25%" />
     </info-window>
   </marker>
   <marker *ngIf="selectedPoi"
