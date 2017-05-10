@@ -68,18 +68,15 @@ namespace CityPoiAPI.Controllers
             }
         }
 
-        [HttpGet("{Name}", Name = "SearchCitiesByName")]
+        [HttpGet("search/{Name}", Name = "SearchCitiesByName")]
         public IActionResult SearchCitiesByName(string Name)
         {
             var cities = _repository.SearchCitiesByName(Name);
 
-            if (cities == null)
+            return new ObjectResult(new CitiesDTO
             {
-                return new NotFoundResult();
-            }
-
-            return new ObjectResult(cities);
+                cityList = cities.ToList()
+            });
             }
         }
-    }
 }

@@ -81,7 +81,7 @@ namespace CityPoiAPI.DataAccessLayer
 
         public IEnumerable<City> SearchCitiesByName(string name)
         {
-            return _context.Cities.Where(x => x.Name.Contains(name));
+            return _context.Cities.Include(c => c.PointsOfInterest).Where(x => x.Name.Contains(name));
         }
     }
 }

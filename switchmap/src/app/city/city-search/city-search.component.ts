@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter} from '@angular/core';
 import {Output} from '@angular/core';
 import {OnInit} from '@angular/core';
 import {CityService} from "../shared/city.service";
@@ -8,13 +8,23 @@ import {City} from "../shared/city.model";
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-  selector: 'app-city-search',
+  selector: 'city-search-component',
   templateUrl: './city-search.component.html',
   styleUrls: ['./city-search.component.css'],
   providers: [CityService]
 })
 
 export class CitySearchComponent implements OnInit {
+  @Output()
+  cityUpdate: EventEmitter<City> = new EventEmitter<City>();
+
+  cities: Observable<City[]>;
+  private searchTerms = new Subject<string>();
+
+  constructor(
+    private citySearchService: CityService
+  ) { }
+
   ngOnInit(): void {
     this.cities = this.searchTerms
       .debounceTime(300)
@@ -28,23 +38,11 @@ export class CitySearchComponent implements OnInit {
       });
   }
 
-  @Output()
-  selectedCity: City;
-
-  cities: Observable<City[]>;
-  private searchTerms = new Subject<string>();
-
-  constructor(
-    private citySearchService: CityService
-  ) { }
-
-
   search(term : string) : void {
     this.searchTerms.next(term);
   }
 
   updateCity(city: City): void {
-    this.selectedCity = city;
+    this.cityUpdate.emit(city);
   }
-
 }

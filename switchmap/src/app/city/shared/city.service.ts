@@ -11,12 +11,13 @@ export class CityService {
 
   search(term: string) : Observable<City[]> {
     return this.http
-      .get(`http::/localhost:59195/api/Cities/${term}?includePointsOfInterest=true`)
-      .map(response => response.json() as City[]);
+      .get(`http://localhost:59195/api/Cities/search/${term}`)
+      .map(response => response.json().cityList as City[])
+      .catch(this.handleError);
   }
 
   getCity(cityId: number): Promise<City> {
-    const url = `http://localhost:59195/api/Cities/${cityId}?includePointsOfInterest=true`;
+    const url = `http://localhost:59195/api/Cities/${cityId}`;
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as City)
@@ -27,4 +28,5 @@ export class CityService {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
+
 }

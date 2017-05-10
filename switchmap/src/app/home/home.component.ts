@@ -9,15 +9,7 @@ import {CityService} from "../city/shared/city.service";
   styleUrls: ['./home.component.css'],
   providers: [CityService]
 })
-export class HomeComponent implements OnInit {
-
-  ngOnInit(): void {
-    Promise.resolve(this.cityService.getCity(this.DEFAULT_CITY_ID)
-      .then(function(value){
-        this.selectedCity = value;
-      }));
-  }
-
+export class HomeComponent {
 
   DEFAULT_CITY_ID = 1;
   selectedCity: City;
@@ -26,7 +18,10 @@ export class HomeComponent implements OnInit {
     private cityService: CityService
   ) { }
 
-
+  ngOnInit() : void {
+    this.cityService.getCity(this.DEFAULT_CITY_ID)
+      .then(city => this.selectedCity = city);
+  }
 
   handleCityUpdated(city: City) : void{
     this.selectedCity = city;

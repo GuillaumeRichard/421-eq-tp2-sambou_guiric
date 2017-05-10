@@ -1,11 +1,10 @@
 <div id="search-component">
   <h4>Recherche:</h4>
-  <h4>{{selectedCity.Name}}</h4>
   <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
-  <div>
+  <div *ngIf="cities">
     <div *ngFor="let city of cities | async"
-         (click)="updateCity(city)" class="search-result">
-      {{city.Name}}
+                        (click)="updateCity(city)" class="search-result">
+      {{city.name}}
     </div>
   </div>
 </div>
